@@ -1,0 +1,1 @@
+./dev/compose run ukws-admin rails c

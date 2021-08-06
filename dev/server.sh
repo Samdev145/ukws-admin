@@ -1,0 +1,1 @@
+./dev/compose up -d ukws-admin && ./dev/compose logs -f ukws-admin
