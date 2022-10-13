@@ -1,1 +1,1 @@
-./dev/compose run -it -d ukws-admin bash
+./dev/compose run --rm ukws-admin bash
