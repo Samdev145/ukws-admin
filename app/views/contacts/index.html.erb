@@ -4,7 +4,7 @@
   <%= label_tag(:search, 'Search by Email') %>
   <%= text_field_tag :search, params[:search] %>
   
-  <%= submit_tag('Search', name: nil)  %>
+  <%= submit_tag('Search', name: nil, class: "btn btn-primary")  %>
 <% end %>
 
 <% if @contacts %>
@@ -18,7 +18,7 @@
       <tr>
         <td><%= con.full_name %></td>
         <td><%= con.email %></td>
-        <td><%= button_to "Show Contact", contact_path(con.id), method: :get %>
+        <td><%= button_to "Show Contact", contact_path(con.id), method: :get, class: "btn btn-primary" %>
         </td>
       </tr>
     <% end %>
