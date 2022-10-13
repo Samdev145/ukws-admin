@@ -84,6 +84,8 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    cssbundling-rails (1.1.1)
+      railties (>= 6.0.0)
     declarative (0.0.20)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -122,6 +124,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.0.3)
+      railties (>= 6.0.0)
     jwt (2.5.0)
     listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -298,9 +302,11 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  cssbundling-rails (~> 1.1)
   dotenv-rails
   google-apis-calendar_v3
   jbuilder (~> 2.7)
+  jsbundling-rails (~> 1.0)
   listen (~> 3.3)
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
