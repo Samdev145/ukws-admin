@@ -4,7 +4,6 @@ require 'zoho/lead'
 
 module Zoho
   class Client
-
     def initialize(session)
       @client = Faraday.new("#{session['api_domain']}/crm/v3/") do |f|
         f.request :json
