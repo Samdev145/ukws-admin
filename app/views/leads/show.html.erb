@@ -36,14 +36,27 @@
   <%= form_tag(book_appointment_lead_path) do -%>
     <%= hidden_field_tag 'id', @lead.id %>
 
-    <%= label_tag(:employee_id, 'Employee') %>
-    <%= select_tag "employee_id", options_from_collection_for_select(Employee.all, :id, :name) %></br>
+    <div class="mb-3 row">
+      <%= label_tag(:employee_id, 'Employee', class: 'col-sm-2 col-form-label') %>
+      <div class="col-sm-10">
+        <%= select_tag "employee_id", options_from_collection_for_select(Employee.all, :id, :name), class: 'form-select' %>
+      </div>
+    </div>
+    
 
-    <%= label_tag(:start_time, 'Start Time') %>
-    <%= select_tag "start_time", options_for_select(1..24, 8) %></br>
+    <div class="mb-3 row">
+      <%= label_tag(:start_time, 'Start Time', class: 'col-sm-2 col-form-label') %>
+      <div class="col-sm-10">
+        <%= select_tag "start_time", options_for_select(1..24, 8), class: 'form-select form-select-lg mb-3' %>
+      </div>
+    </div>
 
-    <%= label_tag(:appointment_duration, 'Appointment Duration') %>
-    <%= select_tag "appointment_duration", options_for_select(1..24, 4) %></br>
+    <div class="mb-3 row">
+      <%= label_tag(:appointment_duration, 'Appointment Duration', class: 'col-sm-2 col-form-label') %>
+      <div class="col-sm-10">
+        <%= select_tag "appointment_duration", options_for_select(1..24, 4), class: 'form-select form-select-lg mb-3' %>
+      </div>
+    </div>
 
     <div><%= submit_tag 'Book Installation' %></div>
   <% end -%>
