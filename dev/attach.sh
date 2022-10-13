@@ -1,0 +1,1 @@
+docker attach $(docker ps -aqf "name=ukws-admin_ukws-admin")
