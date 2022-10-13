@@ -11,7 +11,7 @@
     
     <p><%= @lead.phone %></p>
     
-    <p>Our plumber <%= @installer.name %> will be with you on between 8:30-9:00am<p>
+    <p>Our plumber <%= @installer.name %> will be with you on between <%= "#{@start_time.strftime("%I:%M")}-#{(@start_time + 30.minutes).strftime("%I:%M%P") }" %><p>
     
     <div>
       Price -

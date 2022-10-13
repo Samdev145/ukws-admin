@@ -26,6 +26,7 @@ module Zoho
       id
       Installation_date
       Installation_Type
+      Installer
       Phone
       Postal_Code
       Salt_Quantity

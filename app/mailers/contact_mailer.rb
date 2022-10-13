@@ -4,6 +4,7 @@ class ContactMailer < ApplicationMailer
   def installation_email
     @lead = params[:lead]
     @installer = params[:installer]
+    @start_time = params[:start_time]
     mail(to: @contact.customer_email, subject: 'Installation')
   end
   
