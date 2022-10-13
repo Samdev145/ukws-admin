@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <h1><%= @lead.full_name %> Installation Letter</h1>
+
+    <p><%= @lead.address %></p>
+    
+    <p><%= @lead.phone %></p>
+    
+    <p>Our plumber <%= @installer.name %> will be with you on between 8:30-9:00am<p>
+    
+    <div>
+      Price -
+      
+      Price Includes:
+      
+      VAT
+
+      <ul>
+        <li><%= @lead.water_softener_model %> Water Softener</li>
+        <li><%= @lead.softener_warranty_details %></li>
+        <li><%= @lead.salt_quantity %> Packs of Block Salt</li>
+        <li><%= @lead.installation_type %></li>
+        <% if @lead.drinking_tap %>
+          <li><%= @lead.drinking_tap%></li>
+        <% end %>
+        <% if @lead.drinking_water_filter %>
+          <li><%= @lead.drinking_water_filter %></li>
+        <% end %>
+      </ul>
+      
+      Extra notes:
+    </div>
+    
+    <div>
+      <p>Meet your installer</p>
+
+      <p><%= @installer.name %></p>
+
+      <p><%= @installer.introduction %></p>
+    </div>
+    
+    <p>
+      Thank you for placing your business with us and please get in touch if you need anything.
+      
+      Enjoy your soft water!
+    </p>
+    
+    <p>
+      If you have any questions at all please do not hesitate to contact me.
+    </p>
+
+    <%= render "sarah_signature" %>
+
+  </body>
+</html>

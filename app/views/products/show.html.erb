@@ -1,0 +1,20 @@
+<h1>Product</h1>
+
+<p>Name: <%= @product.name %></p>
+<p>Type: <%= @product.record_type %></p>
+
+<% if @product.photos_attachments %>
+  <p>Photos:</p>
+  <div>
+    <% @product.photos_attachments.each do |photo| %>
+      <image src="<%= url_for(photo)%>">
+    <% end %>
+  </div>
+<% end %>
+
+<ul>
+  <li><%= link_to "Edit", edit_product_path(@product) %></li>
+  <li><%= link_to "Destroy", product_path(@product),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+</ul>

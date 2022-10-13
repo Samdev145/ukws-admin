@@ -1,0 +1,26 @@
+<h1>Contacts Search</h1>
+
+<%= form_tag contacts_path, method: :get do %>
+  <%= label_tag(:search, 'Search by Email') %>
+  <%= text_field_tag :search, params[:search] %>
+  
+  <%= submit_tag('Search', name: nil)  %>
+<% end %>
+
+<% if @contacts %>
+  <table>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Link</th>
+    </tr>
+    <% @contacts.each do |con| %>
+      <tr>
+        <td><%= con.full_name %></td>
+        <td><%= con.email %></td>
+        <td><%= button_to "Show Contact", contact_path(con.id), method: :get %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

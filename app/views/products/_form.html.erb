@@ -1,0 +1,29 @@
+<%= form_with model: product do |form| %>
+	<div>
+		<%= form.label :name %><br>
+		<%= form.text_area :name %>
+		<% product.errors.full_messages_for(:name).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div>
+		<%= form.label :record_type %><br>
+		<%= form.text_area :record_type %>
+		<% product.errors.full_messages_for(:type).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div>
+		<%= form.label :photos %><br>
+		<%= form.file_field :photos, multiple: true %>
+		<% product.errors.full_messages_for(:photos).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div>
+		<%= form.submit %>
+	</div>
+<% end %>

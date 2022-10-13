@@ -1,3 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'products/index'
+  root "dashboard#index"
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get '/login', to: 'sessions#new'
+
+  resources :contacts
+  resources :leads do
+    member do 
+      post :send_email
+      post :book_appointment
+    end
+  end
+  resources :employees
+  resources :products
 end

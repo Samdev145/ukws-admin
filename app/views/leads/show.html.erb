@@ -1,0 +1,50 @@
+<h1>Show Lead</h1>
+
+<% if @lead %>
+  <table>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+    </tr>
+    <tr>
+      <td><%= @lead.full_name %></td>
+      <td><%= @lead.email %></td>
+      </td>
+    </tr>
+  </table>
+
+  <h2>Email Lead</h2>
+
+  <%= form_tag(send_email_lead_path) do -%>
+    <%= hidden_field_tag 'id', @lead.id %>
+
+    <%= label_tag(:installer, 'Installer') %>
+    <%= select_tag "installer_id", options_from_collection_for_select(Employee.installers, :id, :name) %>
+
+    <%= label_tag(:email_template, 'Email Template') %>
+    <%= select_tag "email_template", options_for_select([ "Installation", "Service" ], "Installation") %>
+
+    <%= label_tag(:test, 'Test Email?') %>
+    <%= check_box_tag 'test' %>
+
+
+    <div><%= submit_tag 'Save' %></div>
+  <% end -%>
+
+  <h2>Book Installation</h2>
+
+  <%= form_tag(book_appointment_lead_path) do -%>
+    <%= hidden_field_tag 'id', @lead.id %>
+
+    <%= label_tag(:employee_id, 'Employee') %>
+    <%= select_tag "employee_id", options_from_collection_for_select(Employee.all, :id, :name) %></br>
+
+    <%= label_tag(:start_time, 'Start Time') %>
+    <%= select_tag "start_time", options_for_select(1..24, 8) %></br>
+
+    <%= label_tag(:appointment_duration, 'Appointment Duration') %>
+    <%= select_tag "appointment_duration", options_for_select(1..24, 4) %></br>
+
+    <div><%= submit_tag 'Book Installation' %></div>
+  <% end -%>
+<% end %>
