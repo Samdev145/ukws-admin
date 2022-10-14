@@ -18,7 +18,7 @@ describe Zoho::Client do
   describe '#contacts' do
     let(:search_criteria) do
       {
-        email: 'test@email.com'
+        email: 'testuser@test.com'
       }
     end
 
@@ -50,7 +50,7 @@ describe Zoho::Client do
   describe '#leads' do
     let(:search_criteria) do
       {
-        email: 'test@email.com'
+        email: 'testuser@test.com'
       }
     end
 

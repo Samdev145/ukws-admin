@@ -7,7 +7,7 @@
         "email": "testadminuser@test.com"
       },
       "Company": null,
-      "Email": "testleaduser@test.com",
+      "Email": "testuser@test.com",
       "$currency_symbol": "£",
       "Visitor_Score": null,
       "$field_states": null,
@@ -52,7 +52,7 @@
         "id": "11111111111111111111111",
         "email": "testadminuser@test.com"
       },
-      "Secondary_Email": "testleaduser@test.com",
+      "Secondary_Email": "testuser@test.com",
       "Annual_Revenue": null,
       "Installation_Type": null,
       "Description": null,

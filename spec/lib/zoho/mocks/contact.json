@@ -1,0 +1,90 @@
+{
+  "data": [
+    {
+      "Owner": {
+        "name": "Test Admin User Name",
+        "id": "11111111111111111111111",
+        "email": "testadminuser@test.com"
+      },
+      "Email": "testuser@test.com",
+      "$currency_symbol": "£",
+      "Visitor_Score": null,
+      "$field_states": null,
+      "$sharing_permission": "full_access",
+      "Last_Activity_Time": "2022-10-14T13:21:13+01:00",
+      "$state": "save",
+      "Unsubscribed_Mode": null,
+      "$process_flow": false,
+      "Installation_date": "2022-10-13",
+      "Acceptance_of_data_handling": false,
+      "Mailing_Country": "Test Country",
+      "Review_left": false,
+      "id": "11111111111111111111112",
+      "$approval": {
+        "delegate": false,
+        "approve": false,
+        "reject": false,
+        "resubmit": false
+      },
+      "Enrich_Status__s": null,
+      "First_Visited_URL": null,
+      "Days_Visited": null,
+      "$editable": true,
+      "Drinking_Water_Filter": "TwinTec Annual Filter",
+      "Last_Visited_Time": null,
+      "Secondary_Email": null,
+      "Description": null,
+      "Mailing_Zip": "XXX XXX",
+      "Number_Of_Chats": null,
+      "what3words": null,
+      "$review_process": {
+        "approve": false,
+        "reject": false,
+        "resubmit": false
+      },
+      "Mailing_Street": "8 Somewhere Drive",
+      "Average_Time_Spent_Minutes": null,
+      "$canvas_id": null,
+      "Serial_number_of_drinking_water_filter": null,
+      "Water_Softener_Model": "Infinity HF",
+      "Full_Name": "Test Full Name",
+      "Modified_By": {
+        "name": "Test Admin User Name",
+        "id": "11111111111111111111111",
+        "email": "testadminuser@test.com"
+      },
+      "$review": null,
+      "Phone": "12345 783645",
+      "Account_Name": {
+        "name": "Test Full Name",
+        "id": "111111111111111113"
+      },
+      "Email_Opt_Out": false,
+      "$zia_visions": null,
+      "Notes": null,
+      "First_name_Initial": null,
+      "Modified_Time": "2022-10-14T13:21:13+01:00",
+      "Mailing_City": "Test City",
+      "Salt_type": [
+        "Block"
+      ],
+      "Unsubscribed_Time": null,
+      "Title": null,
+      "$orchestration": null,
+      "Serial_number_of_water_softener": null,
+      "First_Visited_Time": null,
+      "s": null,
+      "Last_Name": "test_last_name",
+      "$in_merge": false,
+      "Referrer": null,
+      "Lead_Source": "Recommendation",
+      "Tag": [
+
+      ],
+      "Recommended_by": "Test Name 2 XXX XXX",
+      "$approval_state": "approved",
+      "$pathfinder": null,
+      "Last_Enriched_Time__s": null
+    }
+  ]
+}

@@ -38,8 +38,6 @@ module Zoho
       what3words
     )
 
-    attr_reader :opts
-
     def initialize(opts)
       @opts = opts
     end

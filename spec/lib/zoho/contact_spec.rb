@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'zoho/client'
 require 'faraday'
 
-describe Zoho::Lead do
-
+describe Zoho::Contact do
+  
   let(:session) do
     {
       'api_domain' => 'https://zoho.domain.test',
@@ -14,7 +14,7 @@ describe Zoho::Lead do
   let(:crm_client) { Zoho::Client.new(session) }
   let(:client) { crm_client.send(:client) }
 
-  describe '.search' do 
+  describe '.search' do
     let(:search_criteria) do
       {
         email: 'testuser@test.com'
@@ -22,42 +22,42 @@ describe Zoho::Lead do
     end
 
     context 'when successful' do
-      let(:leads_response) do
-        File.read(File.expand_path('../mocks/leads.json', __FILE__))
+      let(:contacts_response) do
+        File.read(File.expand_path('../mocks/contacts.json', __FILE__))
       end
 
       before do
-        stub_request(:get, "https://zoho.domain.test/crm/v3/Leads/search?email=testuser@test.com")
+        stub_request(:get, "https://zoho.domain.test/crm/v3/Contacts/search?email=testuser@test.com")
           .with(
             headers: {
               'Authorization' => "Bearer #{session['token']}"
             }
           ).to_return(
             status: 200,
-            body: leads_response,
+            body: contacts_response,
             headers: { 'content-type' => 'application/json' }
           )
       end
 
-      it 'returns an array of Zoho::Lead instances' do
+      it 'returns an array of Zoho::Contact instances' do
         expect(described_class.search(client, search_criteria))
-          .to all(be_a(Zoho::Lead))
+          .to all(be_a(Zoho::Contact))
       end
     end
 
     context 'when unsuccessful' do
       context 'when a match is not found' do
-        let(:leads_response) { nil }
+        let(:contacts_response) { nil }
 
         before do
-          stub_request(:get, "https://zoho.domain.test/crm/v3/Leads/search?email=testuser@test.com")
+          stub_request(:get, "https://zoho.domain.test/crm/v3/Contacts/search?email=testuser@test.com")
             .with(
               headers: {
                 'Authorization' => "Bearer #{session['token']}"
               }
             ).to_return(
               status: 204,
-              body: leads_response,
+              body: contacts_response,
               headers: { 'content-type' => 'application/json' }
             )
         end
@@ -73,42 +73,42 @@ describe Zoho::Lead do
   describe '.find_by_id' do
     let(:id) { '4353456' }
 
-    let(:leads_response) do
-      File.read(File.expand_path('../mocks/lead.json', __FILE__))
+    let(:contacts_response) do
+      File.read(File.expand_path('../mocks/contact.json', __FILE__))
     end
 
     before do
-      stub_request(:get, "https://zoho.domain.test/crm/v3/Leads/4353456")
+      stub_request(:get, "https://zoho.domain.test/crm/v3/Contacts/4353456")
         .with(
           headers: {
             'Authorization' => "Bearer #{session['token']}"
           }
         ).to_return(
           status: 200,
-          body: leads_response,
+          body: contacts_response,
           headers: { 'content-type' => 'application/json' }
         )
     end
 
     context 'when successful' do
-      it 'returns an instance of Zoho::Lead' do
+      it 'returns an instance of Zoho::Contact' do
         expect(described_class.find_by_id(client, id))
-          .to be_an_instance_of(Zoho::Lead)
+          .to be_an_instance_of(Zoho::Contact)
       end
     end
   end
 
-  Zoho::Lead::ATTRIBUTES.each do |attr|
+  Zoho::Contact::ATTRIBUTES.each do |attr|
     describe "##{attr.downcase}" do
       let(:opts) do
-        JSON.parse(File.read(File.expand_path('../mocks/lead.json', __FILE__)))
+        JSON.parse(File.read(File.expand_path('../mocks/contact.json', __FILE__)))
       end
 
       let(:lead) do
         described_class.new(opts)
       end
 
-      it "should return the leads #{attr.downcase}" do
+      it "should return the contacts #{attr.downcase}" do
         expect(lead.send(attr.downcase)).to eq(opts[attr])
       end
     end
