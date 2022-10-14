@@ -13,6 +13,7 @@ module Zoho
 
     def self.find_by_id(client, id)
       response = client.get("Leads/#{id}")
+
       new(response.body['data'][0])
     end
 
@@ -32,7 +33,7 @@ module Zoho
       Salt_Quantity
       Softener_warranty_details
       Street
-      Total Cost
+      Total_Cost
       Water_Softener_Model
       what3words
     )

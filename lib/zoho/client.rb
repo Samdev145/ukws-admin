@@ -13,19 +13,23 @@ module Zoho
     end
 
     def contacts(search_criteria)
-      Contact.search(@client, search_criteria)
+      Contact.search(client, search_criteria)
     end
 
     def find_contact_by_id(id)
-      Contact.find_by_id(@client, id)
+      Contact.find_by_id(client, id)
     end
 
     def leads(search_criteria)
-      Lead.search(@client, search_criteria)
+      Lead.search(client, search_criteria)
     end
 
     def find_lead_by_id(id)
-      Lead.find_by_id(@client, id)
+      Lead.find_by_id(client, id)
     end
+
+    private
+
+    attr_reader :client
   end
 end
