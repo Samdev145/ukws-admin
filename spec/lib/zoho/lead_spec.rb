@@ -27,16 +27,7 @@ describe Zoho::Lead do
       end
 
       before do
-        stub_request(:get, "https://zoho.domain.test/crm/v3/Leads/search?email=testuser@test.com")
-          .with(
-            headers: {
-              'Authorization' => "Bearer #{session['token']}"
-            }
-          ).to_return(
-            status: 200,
-            body: leads_response,
-            headers: { 'content-type' => 'application/json' }
-          )
+        mock_get('/search?email=testuser@test.com', 200, leads_response)
       end
 
       it 'returns an array of Zoho::Lead instances' do
@@ -50,16 +41,7 @@ describe Zoho::Lead do
         let(:leads_response) { nil }
 
         before do
-          stub_request(:get, "https://zoho.domain.test/crm/v3/Leads/search?email=testuser@test.com")
-            .with(
-              headers: {
-                'Authorization' => "Bearer #{session['token']}"
-              }
-            ).to_return(
-              status: 204,
-              body: leads_response,
-              headers: { 'content-type' => 'application/json' }
-            )
+          mock_get('/search?email=testuser@test.com', 204, leads_response)
         end
 
         it 'returns an empty' do
@@ -78,16 +60,7 @@ describe Zoho::Lead do
     end
 
     before do
-      stub_request(:get, "https://zoho.domain.test/crm/v3/Leads/4353456")
-        .with(
-          headers: {
-            'Authorization' => "Bearer #{session['token']}"
-          }
-        ).to_return(
-          status: 200,
-          body: leads_response,
-          headers: { 'content-type' => 'application/json' }
-        )
+      mock_get('/4353456', 200, leads_response)
     end
 
     context 'when successful' do
@@ -112,5 +85,18 @@ describe Zoho::Lead do
         expect(lead.send(attr.downcase)).to eq(opts[attr])
       end
     end
+  end
+
+  def mock_get(path, status, response)
+    stub_request(:get, "https://zoho.domain.test/crm/v3/Leads#{path}")
+      .with(
+        headers: {
+          'Authorization' => "Bearer #{session['token']}"
+        }
+      ).to_return(
+        status: status,
+        body: response,
+        headers: { 'content-type' => 'application/json' }
+      )
   end
 end
