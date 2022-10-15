@@ -42,7 +42,7 @@ module OmniAuth
             api_domain: access_token.params['api_domain'],
             token: access_token.token,
             refresh_token: access_token.refresh_token,
-            expires_at: (Time.now.to_i + access_token.params['expires_in_sec'].to_i)
+            expires_at: access_token.expires_at
         }
       end
 
@@ -57,6 +57,7 @@ module OmniAuth
         hash.merge!("refresh_token" => access_token.refresh_token) if access_token.refresh_token
         hash.merge!("expires_at" => Time.now.to_i + access_token.params['expires_in_sec'].to_i) if access_token.params['expires_in_sec']
         hash.merge!("expires" => access_token.expires?)
+        
         hash
       end
 

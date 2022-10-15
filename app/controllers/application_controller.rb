@@ -1,5 +1,13 @@
 class ApplicationController < ActionController::Base
 
+  before_action :authenticate_user
+
+  def authenticate_user
+    if session[CRM_CLIENT::Provider].nil? || crm_client.invalid_session?
+      redirect_to :login
+    end
+  end
+
   private
 
   def calendar_client
