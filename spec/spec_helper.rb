@@ -16,6 +16,9 @@
 
 require 'byebug'
 require 'webmock/rspec'
+require 'dotenv'
+
+Dotenv.load('.env.test.local')
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
