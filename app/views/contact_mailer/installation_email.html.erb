@@ -5,53 +5,76 @@
   </head>
   <body>
 
+    <div>
+      <p>Image To Go Here - (Banner) </p>
+    </div>
+
     <h1><%= @lead.full_name %> Installation Letter</h1>
 
     <p><%= @lead.address %></p>
     
     <p><%= @lead.phone %></p>
     
-    <p>Our plumber <%= @installer.name %> will be with you on between <%= "#{@start_time.strftime("%I:%M")}-#{(@start_time + 30.minutes).strftime("%I:%M%P") }" %><p>
+    <p>Our plumber <strong><%= @installer.name %></strong> will be with you on between <strong><%= "#{@start_time.strftime("%I:%M")}-#{(@start_time + 30.minutes).strftime("%I:%M%P") }" %></strong><p>
     
-    <div>
-      Price -
-      
-      Price Includes:
-      
-      VAT
+    <div style="display: flex;">
+      <div style="width:50%;border: 2px solid yellow;">
+        <h2>Price - <%= @lead.total_cost %></h2>
+        
+        <p>Price Includes:</p>
 
-      <ul>
-        <li><%= @lead.water_softener_model %> Water Softener</li>
-        <li><%= @lead.softener_warranty_details %></li>
-        <li><%= @lead.salt_quantity %> Packs of Block Salt</li>
-        <li><%= @lead.installation_type %></li>
-        <% if @lead.drinking_tap %>
-          <li><%= @lead.drinking_tap%></li>
-        <% end %>
-        <% if @lead.drinking_water_filter %>
-          <li><%= @lead.drinking_water_filter %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <li>VAT</li>
+          <li><%= @lead.water_softener_model %> Water Softener</li>
+          <li><%= @lead.softener_warranty_details %></li>
+          <li><%= @lead.salt_quantity %> Packs of Block Salt</li>
+          <li><%= @lead.installation_type %></li>
+          <% if @lead.drinking_tap %>
+            <li><%= @lead.drinking_tap%></li>
+          <% end %>
+          <% if @lead.drinking_water_filter %>
+            <li><%= @lead.drinking_water_filter %></li>
+          <% end %>
+        </ul>
+      </div>
       
-      Extra notes:
+      <div style="width:50%;border: 2px solid yellow;">
+        <p>Image To Go Here</p>
+        <p><%= url_for(@softener_image)%></p>
+        <image src="<%= url_for(@softener_image)%>">
+      </div>
     </div>
+
+    <p>Extra notes:</p>
     
-    <div>
-      <p>Meet your installer</p>
+    <div style="display: flex;">
+      <div style="width:50%;border: 2px solid yellow;">
+        <p>Image To Go Here</p>
+        <p><%= url_for(@installer.avatar)%></p>
+      </div>
 
-      <p><%= @installer.name %></p>
+      <div style="width:50%;border: 2px solid yellow;">
+        <h2>Meet your installer</h2>
 
-      <p><%= @installer.introduction %></p>
+        <p><%= @installer.name %></p>
+
+        <p><%= @installer.introduction %></p>
+
+        <p style="font-family:'Comic Sans MS', 'sans-serif'">
+          Thank you for placing your business with us and please get in touch if you need anything.
+        </p>
+        <p style="font-family:'Comic Sans MS', 'sans-serif'">
+          <strong>
+            Enjoy your soft water!
+          </strong>
+        </p>
+      </div>
     </div>
     
     <p>
-      Thank you for placing your business with us and please get in touch if you need anything.
-      
-      Enjoy your soft water!
-    </p>
-    
-    <p>
-      If you have any questions at all please do not hesitate to contact me.
+      <strong>
+        If you have any questions at all please do not hesitate to contact me.
+      </strong>
     </p>
 
     <%= render "sarah_signature" %>

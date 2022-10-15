@@ -5,12 +5,12 @@ class ContactMailer < ApplicationMailer
     @lead = params[:lead]
     @installer = params[:installer]
     @start_time = params[:start_time]
-    mail(to: @contact.customer_email, subject: 'Installation')
+    @softener_image = params[:softener_image]
+    mail(to: @lead.email, subject: 'Installation')
   end
   
   def service_email
     @lead = params[:lead]
-    mail(to: @contact.customer_email, subject: 'Service')
+    mail(to: @lead.email, subject: 'Service')
   end
-
 end
