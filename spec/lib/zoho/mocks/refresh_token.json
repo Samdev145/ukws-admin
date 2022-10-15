@@ -1,6 +1,6 @@
 {
   "access_token": "xxxnewaccesstokenxxx",
-  "api_domain": "https://www.zohoapis.eu",
+  "api_domain": "https://zoho.domain.test",
   "token_type": "Bearer",
   "expires_in": 3600
 }

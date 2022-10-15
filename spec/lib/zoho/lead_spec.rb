@@ -5,10 +5,12 @@ require 'faraday'
 describe Zoho::Lead do
 
   let(:session) do
-    {
-      'api_domain' => 'https://zoho.domain.test',
-      'token' => 'iamatoken'
-    }
+    Zoho::Session.new(
+      {
+        'api_domain' => 'https://zoho.domain.test',
+        'token' => 'iamatoken',
+      }
+    )
   end
 
   let(:crm_client) { Zoho::Client.new(session) }
@@ -91,7 +93,7 @@ describe Zoho::Lead do
     stub_request(:get, "https://zoho.domain.test/crm/v3/Leads#{path}")
       .with(
         headers: {
-          'Authorization' => "Bearer #{session['token']}"
+          'Authorization' => "Bearer #{session.token}"
         }
       ).to_return(
         status: status,

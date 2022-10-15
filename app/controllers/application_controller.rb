@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def crm_client
-    CRM::Client.new(session[CRM::Provider])
+    CRM::Client.new(CRM::Session.new(session[CRM::Provider]))
   end
 end
