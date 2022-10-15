@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user
 
   def authenticate_user
-    if session[CRM_CLIENT::Provider].nil? || crm_client.invalid_session?
+    if session[CRM::Provider].nil? || crm_client.invalid_session?
       redirect_to :login
     end
   end
@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def crm_client
-    CRM_CLIENT.new(session[CRM_CLIENT::Provider])
+    CRM::Client.new(session[CRM::Provider])
   end
 end
