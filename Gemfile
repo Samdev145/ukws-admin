@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
 gem 'omniauth-zoho'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
