@@ -38,6 +38,7 @@ yarn-debug.log*
 .yarn-integrity
 
 curl_commands
+examples
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
