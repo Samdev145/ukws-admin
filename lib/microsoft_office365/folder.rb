@@ -7,13 +7,12 @@ module MicrosoftOffice365
     end
 
     def get_images(type)
-      children.each_with_object([]) do |child, arr|
-        arr << Child.new(child) if child['name'] =~ /#{type}/
-      end
+      children.select { |child| child['name'] =~ /#{type}/ }
     end
 
     def children
-      @client.get("v1.0/drives/#{ENV['OFFICE365_DRIVE_ID']}/items/#{@id}/children").body['value']
+      response = @client.get("v1.0/drives/#{ENV['OFFICE365_DRIVE_ID']}/items/#{@id}/children")
+      response.body['value'].map { |child| Child.new(child) }
     end
   end
 end

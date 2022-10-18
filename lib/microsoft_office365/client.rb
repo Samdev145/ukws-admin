@@ -14,10 +14,9 @@ module MicrosoftOffice365
       end
     end
 
-    def find_customer(customer_name)
-      resp = @client.get("v1.0/drives/#{ENV['OFFICE365_DRIVE_ID']}/root/search(q='#{customer_name}')")
-      
-      Folder.new(@client, resp.body['value'][0])
+    def find_folder(folder_path)
+      resp = @client.get("v1.0/drives/#{ENV['OFFICE365_DRIVE_ID']}/root:#{folder_path}")
+      Folder.new(@client, resp.body)
     end
   end
 end
