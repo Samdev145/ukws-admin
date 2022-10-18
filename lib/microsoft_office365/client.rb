@@ -1,3 +1,4 @@
+require 'microsoft_office365/session'
 require 'microsoft_office365/folder'
 require 'microsoft_office365/child'
 
@@ -14,7 +15,7 @@ module MicrosoftOffice365
     end
 
     def find_customer(customer_name)
-      resp = @client.get("v1.0/me/drive/root/search(q='#{customer_name}')")
+      resp = @client.get("v1.0/drives/#{ENV['OFFICE365_DRIVE_ID']}/root/search(q='#{customer_name}')")
       
       Folder.new(@client, resp.body['value'][0])
     end

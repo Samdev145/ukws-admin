@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def file_storage_client
-    FileStorage::Client.new(session[FileStorage::Provider])
+    FileStorage::Client.new(FileStorage::Session.new)
   end
 end

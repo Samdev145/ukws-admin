@@ -13,7 +13,7 @@ module MicrosoftOffice365
     end
 
     def children
-      @client.get("v1.0/me/drive/items/#{@id}/children").body['value']
+      @client.get("v1.0/drives/#{ENV['OFFICE365_DRIVE_ID']}/items/#{@id}/children").body['value']
     end
   end
 end
