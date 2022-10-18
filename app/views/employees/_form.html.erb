@@ -8,6 +8,14 @@
 	</div>
 
 	<div>
+		<%= form.label :email %><br>
+		<%= form.text_area :email %>
+		<% employee.errors.full_messages_for(:email).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div>
 		<%= form.label :calendar_id, 'Calendar ID' %><br>
 		<%= form.text_area :calendar_id %>
 		<% employee.errors.full_messages_for(:calendar_id).each do |message| %>

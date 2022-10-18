@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_193333) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name", null: false
+    t.string "email", null: false
     t.string "calendar_id", null: false
     t.string "contact_number", null: false
     t.string "job", null: false
