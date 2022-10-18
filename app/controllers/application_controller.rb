@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
   def crm_client
     CRM::Client.new(CRM::Session.new(session[CRM::Provider]))
   end
+
+  def file_storage_client
+    FileStorage::Client.new(session[FileStorage::Provider])
+  end
 end
