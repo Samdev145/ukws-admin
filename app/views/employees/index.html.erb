@@ -1,11 +1,32 @@
-<h1>Employee</h1>
+<h1>Employees</h1>
 
-<ul>
-  <% @employees.each do |employee| %>
-    <li>
-      <%= link_to employee.name, employee %>
-    </li>
-  <% end %>
-</ul>
+<%= link_to "Add New Employee", new_employee_path %>
 
-<%= link_to "New Employee", new_employee_path %>
+<% @employees.each do |employee| %>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <% if employee.avatar.attached? %>
+          <image src="<%= url_for(@employee.avatar) %>" class="img-fluid rounded-start">
+        <% end %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body" style="padding-bottom: 45px;">
+          <h5 class="card-title"><%= "#{employee.job} - #{employee.name}" %></h5>
+          <p><span class="bi-telephone"></span><%= employee.contact_number %></p>
+          <p><strong>Introduction</strong></p>
+          <p><%= employee.introduction %></p>
+          
+          <div class="btn-group float-end" role="group">
+            <%= button_to "Edit", edit_employee_path(employee), class: "btn btn-primary btn-sm float-end", form: {style: 'margin-right: 5px'}, method: :get  %>
+            <%= button_to "Destroy", employee_path(employee),
+                            class: "btn btn-danger btn-sm float-end",
+                            method: :delete,
+                            data: { confirm: "Are you sure?" } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
