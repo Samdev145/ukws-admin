@@ -29,6 +29,11 @@ class LeadsController < ApplicationController
       softener_image: softener_image
     ).installation_email.deliver_now
 
+    ContactMailer.with(
+      lead: lead,
+      installer: installer,
+    ).survey_email.deliver_now
+
     redirect_to :leads
   end
 
@@ -51,6 +56,11 @@ class LeadsController < ApplicationController
       start_time: start_time,
       softener_image: softener_image
     ).installation_email.deliver_now
+
+    ContactMailer.with(
+      lead: lead,
+      installer: installer,
+    ).survey_email.deliver_now
 
     calendar_client.schedule(
       start_time: start_time,

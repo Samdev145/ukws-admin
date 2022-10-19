@@ -20,19 +20,27 @@ module Zoho
     ATTRIBUTES = %w(
       City
       Country
+      Incoming_Mains_Location
       Drinking_Tap
       Drinking_Water_Filter
       Email
       Full_Name
+      Heating_System
+      Household_Size
+      How_Many_Bathrooms
       id
       Installation_date
+      Incoming_Main_Size
       Installation_Type
       Installed_by
+      Mobile
       Phone
       Postal_Code
       Salt_Quantity
+      Salt_type
       Softener_warranty_details
       Street
+      Survey_Notes
       Total_Cost
       Water_Softener_Model
       what3words
