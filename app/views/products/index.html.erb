@@ -3,9 +3,9 @@
 <ul>
   <% @products.each do |product| %>
     <li>
-      <%= link_to product, product %>
+      <%= link_to product.name, product %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to "New Product", new_product_path %>
+<%= button_to "New Product", new_product_path, class: "btn btn-primary", method: :get  %>
