@@ -1,7 +1,7 @@
 <div class="central-items">
   <h1>Employees</h1>
 
-  <%= link_to "Add New Employee", new_employee_path %>
+  <%= button_to "Add New Employee", new_employee_path, method: :get, class: "btn btn-primary" %>
 
   <% @employees.each do |employee| %>
     <div class="card mb-3"">
@@ -14,8 +14,8 @@
         <div class="col-md-8">
           <div class="card-body" style="padding-bottom: 45px;">
             <h5 class="card-title"><%= "#{employee.job} - #{employee.name}" %></h5>
-            <p><span class="bi-telephone"></span><%= employee.contact_number %></p>
-            <p><span class="bi-envelope"></span><%= employee.email %></p>
+            <p><span class="bi-telephone card-icon"></span><%= employee.contact_number %></p>
+            <p><span class="bi-envelope card-icon"></span><%= employee.email %></p>
             <p><strong>Introduction</strong></p>
             <p><%= employee.introduction %></p>
 

@@ -1,61 +1,61 @@
 <%= form_with model: employee do |form| %>
-	<div>
-		<%= form.label :name %><br>
-		<%= form.text_area :name %>
+	<div class="form-group">
+		<%= form.label :name %>
+		<%= form.text_area :name, class: "form-control" %>
 		<% employee.errors.full_messages_for(:name).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>
 
-	<div>
-		<%= form.label :email %><br>
-		<%= form.text_area :email %>
+	<div class="form-group">
+		<%= form.label :email %>
+		<%= form.text_area :email, class: "form-control" %>
 		<% employee.errors.full_messages_for(:email).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>
 
-	<div>
-		<%= form.label :calendar_id, 'Calendar ID' %><br>
-		<%= form.text_area :calendar_id %>
+	<div class="form-group">
+		<%= form.label :calendar_id, 'Calendar ID' %>
+		<%= form.text_area :calendar_id, class: "form-control" %>
 		<% employee.errors.full_messages_for(:calendar_id).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>
 
-	<div>
-		<%= form.label :job %><br>
-		<%= form.text_area :job %>
+	<div class="form-group">
+		<%= form.label :job %>
+		<%= form.text_area :job, class: "form-control" %>
 		<% employee.errors.full_messages_for(:job).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>
 
-	<div>
-		<%= form.label :introduction %><br>
-		<%= form.text_area :introduction %>
+	<div class="form-group">
+		<%= form.label :introduction %>
+		<%= form.text_area :introduction, class: "form-control" %>
 		<% employee.errors.full_messages_for(:introduction).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>
 
-	<div>
-		<%= form.label :contact_number %><br>
-		<%= form.text_area :contact_number %>
+	<div class="form-group">
+		<%= form.label :contact_number %>
+		<%= form.text_area :contact_number, class: "form-control" %>
 		<% employee.errors.full_messages_for(:contact_number).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>
 
-	<div>
-		<%= form.label :avatar %><br>
-		<%= form.file_field :avatar %>
+	<div class="form-group">
+		<%= form.label :avatar, 'Picture' %>
+		<%= form.file_field :avatar, class: "form-control" %>
 		<% employee.errors.full_messages_for(:avatar).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>
 
 	<div>
-		<%= form.submit %>
+		<%= form.submit :class => "btn btn-primary float-end" %>
 	</div>
 <% end %>
