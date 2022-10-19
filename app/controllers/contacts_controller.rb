@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  layout "search", only: :index
+
   def index
     @session_details = session[:zoho]
 
