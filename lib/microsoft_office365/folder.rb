@@ -1,6 +1,5 @@
 module MicrosoftOffice365
   class Folder
-
     def initialize(client, opts)
       @client = client
       @id = opts['id']

@@ -1,12 +1,10 @@
 class LeadsController < ApplicationController
-  layout "search", only: :index
+  layout 'search', only: :index
 
   def index
     @session_details = session[:zoho]
 
-    if params[:search]
-      @leads = crm_client.leads(email: params[:search])
-    end
+    @leads = crm_client.leads(email: params[:search]) if params[:search]
   end
 
   def show
@@ -18,12 +16,12 @@ class LeadsController < ApplicationController
     installer = Employee.find_by_name(lead.installed_by)
 
     softener_image = Product.find_by_name(lead.water_softener_model.downcase)
-                       .find_attachment_by_filename(:main_photo)
+                            .find_attachment_by_filename(:main_photo)
 
     year, month, day = lead.installation_date.split('-').map(&:to_i)
     start_time = DateTime.new(year, month, day, params[:start_time].to_i)
     end_time = start_time + params[:appointment_duration].to_i.hours
-    
+
     ContactMailer.with(
       lead: lead,
       installer: installer,
@@ -33,7 +31,7 @@ class LeadsController < ApplicationController
 
     ContactMailer.with(
       lead: lead,
-      installer: installer,
+      installer: installer
     ).survey_email.deliver_now
 
     redirect_to :leads
@@ -46,7 +44,7 @@ class LeadsController < ApplicationController
     installer = Employee.find_by_name(lead.installed_by)
 
     softener_image = Product.find_by_name(lead.water_softener_model.downcase)
-                       .find_attachment_by_filename(:main_photo)
+                            .find_attachment_by_filename(:main_photo)
 
     year, month, day = lead.installation_date.split('-').map(&:to_i)
     start_time = DateTime.new(year, month, day, params[:start_time].to_i)
@@ -61,7 +59,7 @@ class LeadsController < ApplicationController
 
     ContactMailer.with(
       lead: lead,
-      installer: installer,
+      installer: installer
     ).survey_email.deliver_now
 
     calendar_client.schedule(

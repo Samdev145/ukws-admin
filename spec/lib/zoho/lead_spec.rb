@@ -3,12 +3,11 @@ require 'zoho/client'
 require 'faraday'
 
 describe Zoho::Lead do
-
   let(:session) do
     Zoho::Session.new(
       {
         'api_domain' => 'https://zoho.domain.test',
-        'token' => 'iamatoken',
+        'token' => 'iamatoken'
       }
     )
   end
@@ -16,7 +15,7 @@ describe Zoho::Lead do
   let(:crm_client) { Zoho::Client.new(session) }
   let(:client) { crm_client.send(:client) }
 
-  describe '.search' do 
+  describe '.search' do
     let(:search_criteria) do
       {
         email: 'testuser@test.com'
@@ -25,7 +24,7 @@ describe Zoho::Lead do
 
     context 'when successful' do
       let(:leads_response) do
-        File.read(File.expand_path('../mocks/leads.json', __FILE__))
+        File.read(File.expand_path('mocks/leads.json', __dir__))
       end
 
       before do
@@ -58,7 +57,7 @@ describe Zoho::Lead do
     let(:id) { '4353456' }
 
     let(:leads_response) do
-      File.read(File.expand_path('../mocks/lead.json', __FILE__))
+      File.read(File.expand_path('mocks/lead.json', __dir__))
     end
 
     before do
@@ -76,7 +75,7 @@ describe Zoho::Lead do
   Zoho::Lead::ATTRIBUTES.each do |attr|
     describe "##{attr.downcase}" do
       let(:opts) do
-        JSON.parse(File.read(File.expand_path('../mocks/lead.json', __FILE__)))
+        JSON.parse(File.read(File.expand_path('mocks/lead.json', __dir__)))
       end
 
       let(:lead) do

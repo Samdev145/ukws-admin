@@ -5,7 +5,7 @@ require 'active_support/testing/time_helpers'
 
 describe Zoho::Client do
   include ActiveSupport::Testing::TimeHelpers
-  
+
   subject(:crm_client) { described_class.new(session) }
 
   let(:client) { crm_client.send(:client) }
@@ -19,7 +19,7 @@ describe Zoho::Client do
       }
     )
   end
-  
+
   describe '#contacts' do
     let(:search_criteria) do
       {
@@ -85,7 +85,6 @@ describe Zoho::Client do
   end
 
   describe '#invalid_session?' do
-
     it 'the same method on the session' do
       expect(session).to receive(:invalid_session?)
 

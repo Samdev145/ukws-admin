@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Employee, type: :model do
-
   describe 'associations' do
     it { have_one_attached(:avatar) }
   end
-  
+
   describe 'validations' do
     subject { build(:employee) }
 
@@ -20,7 +19,6 @@ RSpec.describe Employee, type: :model do
 
   describe 'queries' do
     describe '#installers' do
-
       before do
         2.times { create(:employee, job: 'Installer') }
         create(:employee, job: 'head of something')

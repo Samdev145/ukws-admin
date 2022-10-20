@@ -1,6 +1,5 @@
 module MicrosoftOffice365
   class Child
-
     def initialize(opts)
       @opts = opts
     end
@@ -17,7 +16,7 @@ module MicrosoftOffice365
       HTTParty.get(download_url)
     end
 
-    def download_file_to(path=nil)
+    def download_file_to(path = nil)
       resp = HTTParty.get(download_url)
       File.open("#{Rails.root}#{path}/#{name}", 'wb') { |f| f.write(resp.parsed_response) }
     end

@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-
   def index
     @products = Product.all
   end
@@ -47,7 +46,7 @@ class ProductsController < ApplicationController
 
     redirect_to root_path
   end
-  
+
   private
 
   def product_params

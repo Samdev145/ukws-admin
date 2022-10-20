@@ -1,9 +1,8 @@
 module MicrosoftOffice365
   class Session
-
-    SCOPE='https://graph.microsoft.com/.default'
-    API_DOMAIN='https://graph.microsoft.com'
-    LOGIN_URL='https://login.microsoftonline.com/'
+    SCOPE = 'https://graph.microsoft.com/.default'
+    API_DOMAIN = 'https://graph.microsoft.com'
+    LOGIN_URL = 'https://login.microsoftonline.com/'
 
     def initialize
       authenticate

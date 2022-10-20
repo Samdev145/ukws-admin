@@ -1,6 +1,5 @@
 module Zoho
   class Lead
-
     def self.search(client, search_criteria)
       response = client.get('Leads/search', search_criteria)
 
@@ -13,11 +12,11 @@ module Zoho
 
     def self.find_by_id(client, id)
       response = client.get("Leads/#{id}")
-      
+
       new(response.body['data'][0])
     end
 
-    ATTRIBUTES = %w(
+    ATTRIBUTES = %w[
       City
       Country
       Incoming_Mains_Location
@@ -44,12 +43,12 @@ module Zoho
       Total_Cost
       Water_Softener_Model
       what3words
-    )
+    ]
 
     def initialize(opts)
       @opts = opts
     end
-    
+
     ATTRIBUTES.each do |attr|
       define_method attr.downcase do
         @opts[attr]

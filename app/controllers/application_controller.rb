@@ -1,11 +1,8 @@
 class ApplicationController < ActionController::Base
-
   before_action :authenticate_user
 
   def authenticate_user
-    if session[CRM::Provider].nil? || crm_client.invalid_session?
-      redirect_to :login
-    end
+    redirect_to :login if session[CRM::Provider].nil? || crm_client.invalid_session?
   end
 
   private

@@ -1,6 +1,5 @@
 module Zoho
   class Contact
-
     def self.search(client, search_criteria)
       response = client.get('Contacts/search', search_criteria)
 
@@ -17,11 +16,11 @@ module Zoho
       new(response.body['data'][0])
     end
 
-    ATTRIBUTES = %w(
+    ATTRIBUTES = %w[
       Email
       Full_Name
       id
-    )
+    ]
 
     def initialize(opts)
       @opts = opts

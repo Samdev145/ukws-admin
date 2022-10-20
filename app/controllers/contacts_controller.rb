@@ -1,12 +1,10 @@
 class ContactsController < ApplicationController
-  layout "search", only: :index
+  layout 'search', only: :index
 
   def index
     @session_details = session[:zoho]
 
-    if params[:search]
-      @contacts = crm_client.contacts(email: params[:search])
-    end
+    @contacts = crm_client.contacts(email: params[:search]) if params[:search]
   end
 
   def show

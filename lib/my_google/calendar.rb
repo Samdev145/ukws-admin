@@ -7,7 +7,7 @@ module MyGoogle
       calendar.authorization = session['token']
     end
 
-    def schedule(opts={})
+    def schedule(opts = {})
       event = Google::Apis::CalendarV3::Event.new(
         summary: opts[:summary],
         location: opts[:location],
@@ -27,6 +27,5 @@ module MyGoogle
         time_zone: 'Europe/London'
       )
     end
-
   end
 end

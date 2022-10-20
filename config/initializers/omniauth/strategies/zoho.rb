@@ -3,11 +3,10 @@ require 'omniauth/strategies/oauth2'
 module OmniAuth
   module Strategies
     class Zoho < OmniAuth::Strategies::OAuth2
-
       option :client_options, {
-          :site          => 'https://accounts.zoho.eu',
-          :authorize_url => '/oauth/v2/auth',
-          :token_url     => '/oauth/v2/token'
+        site: 'https://accounts.zoho.eu',
+        authorize_url: '/oauth/v2/auth',
+        token_url: '/oauth/v2/token'
       }
 
       option provider_ignores_state: true
@@ -34,30 +33,32 @@ module OmniAuth
         token
       end
 
-      uid{ raw_info['id'] }
+      uid { raw_info['id'] }
 
       info do
         {
-            email: raw_info['primary_email'],
-            api_domain: access_token.params['api_domain'],
-            token: access_token.token,
-            refresh_token: access_token.refresh_token,
-            expires_at: access_token.expires_at
+          email: raw_info['primary_email'],
+          api_domain: access_token.params['api_domain'],
+          token: access_token.token,
+          refresh_token: access_token.refresh_token,
+          expires_at: access_token.expires_at
         }
       end
 
       extra do
         {
-            'raw_info' => raw_info
+          'raw_info' => raw_info
         }
       end
 
       credentials do
-        hash = {"token" => access_token.token}
-        hash.merge!("refresh_token" => access_token.refresh_token) if access_token.refresh_token
-        hash.merge!("expires_at" => Time.now.to_i + access_token.params['expires_in_sec'].to_i) if access_token.params['expires_in_sec']
-        hash.merge!("expires" => access_token.expires?)
-        
+        hash = { 'token' => access_token.token }
+        hash.merge!('refresh_token' => access_token.refresh_token) if access_token.refresh_token
+        if access_token.params['expires_in_sec']
+          hash.merge!('expires_at' => Time.now.to_i + access_token.params['expires_in_sec'].to_i)
+        end
+        hash.merge!('expires' => access_token.expires?)
+
         hash
       end
 

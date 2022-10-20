@@ -1,5 +1,4 @@
 class EmployeesController < ApplicationController
-
   def index
     @employees = Employee.all
   end
@@ -38,7 +37,7 @@ class EmployeesController < ApplicationController
 
     redirect_to root_path
   end
-  
+
   private
 
   def employee_params

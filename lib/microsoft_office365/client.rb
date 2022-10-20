@@ -4,7 +4,6 @@ require 'microsoft_office365/child'
 
 module MicrosoftOffice365
   class Client
-
     def initialize(session)
       @session = session
       @client = Faraday.new("#{session.api_domain}") do |f|

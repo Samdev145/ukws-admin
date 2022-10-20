@@ -22,11 +22,12 @@ module Zoho
 
     def valid_session?
       return true unless token_expired?
+
       refreshed_token?
     end
 
     def refreshed_token?
-      conn = Faraday.new("https://accounts.zoho.eu") do |f|
+      conn = Faraday.new('https://accounts.zoho.eu') do |f|
         f.response :json
       end
 

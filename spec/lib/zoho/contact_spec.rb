@@ -3,7 +3,6 @@ require 'zoho/client'
 require 'faraday'
 
 describe Zoho::Contact do
-  
   let(:session) do
     Zoho::Session.new(
       {
@@ -25,7 +24,7 @@ describe Zoho::Contact do
 
     context 'when successful' do
       let(:contacts_response) do
-        File.read(File.expand_path('../mocks/contacts.json', __FILE__))
+        File.read(File.expand_path('mocks/contacts.json', __dir__))
       end
 
       before do
@@ -58,7 +57,7 @@ describe Zoho::Contact do
     let(:id) { '4353456' }
 
     let(:contacts_response) do
-      File.read(File.expand_path('../mocks/contact.json', __FILE__))
+      File.read(File.expand_path('mocks/contact.json', __dir__))
     end
 
     before do
@@ -76,7 +75,7 @@ describe Zoho::Contact do
   Zoho::Contact::ATTRIBUTES.each do |attr|
     describe "##{attr.downcase}" do
       let(:opts) do
-        JSON.parse(File.read(File.expand_path('../mocks/contact.json', __FILE__)))
+        JSON.parse(File.read(File.expand_path('mocks/contact.json', __dir__)))
       end
 
       let(:lead) do
