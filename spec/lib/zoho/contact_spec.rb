@@ -84,7 +84,7 @@ describe Zoho::Contact do
         described_class.new(opts)
       end
 
-      it "should return the contacts #{attr.downcase}" do
+      it "returns the contacts #{attr.downcase}" do
         expect(lead.send(attr.downcase)).to eq(opts[attr])
       end
     end

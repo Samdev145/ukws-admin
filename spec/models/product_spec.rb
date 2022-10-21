@@ -10,9 +10,9 @@ RSpec.describe Product, type: :model do
   describe 'validations' do
     subject { create(:product) }
 
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:record_type) }
-    it { should validate_presence_of(:photos) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:record_type) }
+    it { is_expected.to validate_presence_of(:photos) }
   end
 
   describe 'queries' do

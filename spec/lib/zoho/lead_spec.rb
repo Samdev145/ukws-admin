@@ -84,7 +84,7 @@ describe Zoho::Lead do
         described_class.new(opts)
       end
 
-      it "should return the leads #{attr.downcase}" do
+      it "returns the leads #{attr.downcase}" do
         expect(lead.send(attr.downcase)).to eq(opts[attr])
       end
     end
