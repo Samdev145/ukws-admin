@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Employee < ApplicationRecord
   has_one_attached :avatar
 

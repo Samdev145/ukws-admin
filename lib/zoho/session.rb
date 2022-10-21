@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Zoho
   class Session
     def initialize(session)

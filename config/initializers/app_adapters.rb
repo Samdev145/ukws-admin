@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'zoho/client'
 require 'my_google/calendar'
 require 'microsoft_office365/client'

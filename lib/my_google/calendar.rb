@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MyGoogle
   class Calendar
     attr_reader :calendar

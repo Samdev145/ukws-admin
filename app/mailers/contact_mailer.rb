@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactMailer < ApplicationMailer
   default from: 'spthomas145@gmail.com'
   helper :mailer
@@ -10,7 +12,7 @@ class ContactMailer < ApplicationMailer
 
     mail(to: @lead.email, subject: 'Installation Appointment')
   end
-  
+
   def survey_email
     @lead = params[:lead]
     @installer = params[:installer]
@@ -20,7 +22,7 @@ class ContactMailer < ApplicationMailer
     images = survey_image_folder.children
     images.each do |img|
       response = img.download_file
-      attachments["#{img.name}"] = response.parsed_response
+      attachments[img.name.to_s] = response.parsed_response
     end
 
     mail(to: @installer.email, subject: 'Survey Details')

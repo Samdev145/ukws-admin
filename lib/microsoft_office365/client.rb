@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'microsoft_office365/session'
 require 'microsoft_office365/folder'
 require 'microsoft_office365/child'
@@ -6,7 +8,7 @@ module MicrosoftOffice365
   class Client
     def initialize(session)
       @session = session
-      @client = Faraday.new("#{session.api_domain}") do |f|
+      @client = Faraday.new(session.api_domain.to_s) do |f|
         f.request :json
         f.response :json
         f.request :authorization, 'bearer', session.token

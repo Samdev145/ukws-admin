@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'zoho/session'
 require 'zoho/contact'
 require 'zoho/lead'

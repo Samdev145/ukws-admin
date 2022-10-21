@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MicrosoftOffice365
   class Session
     SCOPE = 'https://graph.microsoft.com/.default'

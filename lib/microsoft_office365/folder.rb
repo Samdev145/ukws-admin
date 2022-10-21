@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MicrosoftOffice365
   class Folder
     def initialize(client, opts)

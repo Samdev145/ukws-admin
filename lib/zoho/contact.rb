@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Zoho
   class Contact
     def self.search(client, search_criteria)
@@ -20,7 +22,7 @@ module Zoho
       Email
       Full_Name
       id
-    ]
+    ].freeze
 
     def initialize(opts)
       @opts = opts

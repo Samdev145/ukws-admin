@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Zoho
   class Lead
     def self.search(client, search_criteria)
@@ -43,7 +45,7 @@ module Zoho
       Total_Cost
       Water_Softener_Model
       what3words
-    ]
+    ].freeze
 
     def initialize(opts)
       @opts = opts
