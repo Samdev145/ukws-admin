@@ -12,7 +12,7 @@ module MicrosoftOffice365
     end
 
     def children
-      response = @client.get("v1.0/drives/#{ENV['OFFICE365_DRIVE_ID']}/items/#{@id}/children")
+      response = @client.get("v1.0/drives/#{ENV.fetch('OFFICE365_DRIVE_ID')}/items/#{@id}/children")
       response.body['value'].map { |child| Child.new(child) }
     end
   end

@@ -16,7 +16,7 @@ module MicrosoftOffice365
     end
 
     def find_folder(folder_path)
-      resp = @client.get("v1.0/drives/#{ENV['OFFICE365_DRIVE_ID']}/root:#{folder_path}")
+      resp = @client.get("v1.0/drives/#{ENV.fetch('OFFICE365_DRIVE_ID')}/root:#{folder_path}")
       Folder.new(@client, resp.body)
     end
   end

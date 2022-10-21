@@ -23,12 +23,12 @@ module MicrosoftOffice365
     def authenticate
       conn = Faraday.new(LOGIN_URL)
 
-      response = conn.post("#{ENV['OFFICE365_TENANT_ID']}/oauth2/v2.0/token") do |req|
+      response = conn.post("#{ENV.fetch('OFFICE365_TENANT_ID')}/oauth2/v2.0/token") do |req|
         req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         req.body = {
           grant_type: 'client_credentials',
-          client_id: ENV['OFFICE365_KEY'],
-          client_secret: ENV['OFFICE365_SECRET'],
+          client_id: ENV.fetch('OFFICE365_KEY'),
+          client_secret: ENV.fetch('OFFICE365_SECRET'),
           scope: SCOPE
         }
       end

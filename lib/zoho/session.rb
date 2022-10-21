@@ -37,8 +37,8 @@ module Zoho
         req.headers['Content-Type'] = 'application/json'
         req.params = {
           refresh_token: session['refresh_token'],
-          client_id: ENV['ZOHO_API_KEY'],
-          client_secret: ENV['ZOHO_SHARED_SECRET'],
+          client_id: ENV.fetch('ZOHO_API_KEY'),
+          client_secret: ENV.fetch('ZOHO_SHARED_SECRET'),
           grant_type: 'refresh_token'
         }
       end
