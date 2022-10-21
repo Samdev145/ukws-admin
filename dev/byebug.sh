@@ -1,0 +1,1 @@
+./dev/compose exec ukws-admin byebug -R localhost:8989
