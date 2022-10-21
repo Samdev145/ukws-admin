@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LeadsController < ApplicationController
   layout 'search', only: :index
 
@@ -27,12 +29,12 @@ class LeadsController < ApplicationController
       installer: installer,
       start_time: start_time,
       softener_image: softener_image
-    ).installation_email.deliver_now
+    ).installation_email.deliver_later
 
     ContactMailer.with(
       lead: lead,
       installer: installer
-    ).survey_email.deliver_now
+    ).survey_email.deliver_later
 
     redirect_to :leads
   end
@@ -55,12 +57,12 @@ class LeadsController < ApplicationController
       installer: installer,
       start_time: start_time,
       softener_image: softener_image
-    ).installation_email.deliver_now
+    ).installation_email.deliver_later
 
     ContactMailer.with(
       lead: lead,
       installer: installer
-    ).survey_email.deliver_now
+    ).survey_email.deliver_later
 
     calendar_client.schedule(
       start_time: start_time,
