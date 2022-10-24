@@ -6,7 +6,13 @@ class ContactsController < ApplicationController
   def index
     @session_details = session[:zoho]
 
-    @contacts = crm_client.contacts(email: params[:search]) if params[:search]
+    if params[:search] && params[:search].present?
+      @contacts = crm_client.contacts(email: params[:search])
+
+      if @contacts.empty?
+        flash.now[:alert] = 'No contacts could be found by matching the email you provided'
+      end
+    end
   end
 
   def show

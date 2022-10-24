@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class LeadsController < ApplicationController
-  layout 'search', only: :index
-
   def index
     @session_details = session[:zoho]
 
-    @leads = crm_client.leads(email: params[:search]) if params[:search]
+    if params[:search] && params[:search].present?
+      @leads = crm_client.leads(email: params[:search])
+
+      if @leads.empty?
+        flash.now[:alert] = 'No leads could be found by matching the email you provided'
+      end
+    end
   end
 
   def show
@@ -21,7 +25,7 @@ class LeadsController < ApplicationController
                             .find_attachment_by_filename(:main_photo)
 
     year, month, day = lead.installation_date.split('-').map(&:to_i)
-    start_time = DateTime.new(year, month, day, params[:start_time].to_i)
+    start_time = DateTime.new(year, month, day, *params[:start_time].split(':').map(&:to_i))
     end_time = start_time + params[:appointment_duration].to_i.hours
 
     ContactMailer.with(
@@ -49,7 +53,7 @@ class LeadsController < ApplicationController
                             .find_attachment_by_filename(:main_photo)
 
     year, month, day = lead.installation_date.split('-').map(&:to_i)
-    start_time = DateTime.new(year, month, day, params[:start_time].to_i)
+    start_time = DateTime.new(year, month, day, *params[:start_time].split(':').map(&:to_i))
     end_time = start_time + params[:appointment_duration].to_i.hours
 
     ContactMailer.with(
