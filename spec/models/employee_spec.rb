@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Employee, type: :model do
   describe 'associations' do
-    it { have_one_attached(:avatar) }
+    it { is_expected.to have_one_attached(:avatar) }
   end
 
   describe 'validations' do
@@ -15,6 +15,7 @@ RSpec.describe Employee, type: :model do
     it { is_expected.to validate_presence_of(:contact_number) }
     it { is_expected.to validate_presence_of(:job) }
     it { is_expected.to validate_presence_of(:introduction) }
+    it { is_expected.to validate_presence_of(:preferred_start_time) }
 
     it { is_expected.to validate_uniqueness_of(:email) }
   end

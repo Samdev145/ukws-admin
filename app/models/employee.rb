@@ -5,6 +5,14 @@ class Employee < ApplicationRecord
 
   scope :installers, -> { where(job: 'Installer') }
 
-  validates :name, :email, :calendar_id, :contact_number, :job, :introduction, presence: true
+  validates :name,
+            :email,
+            :calendar_id,
+            :contact_number,
+            :job,
+            :introduction,
+            :preferred_start_time,
+            presence: true
+
   validates :email, uniqueness: true
 end

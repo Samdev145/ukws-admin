@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   describe 'associations' do
-    it { have_many_attached(:photos) }
+    it { is_expected.to have_many_attached(:photos) }
   end
 
   describe 'validations' do
@@ -24,7 +24,7 @@ RSpec.describe Product, type: :model do
           it 'returns the correct image' do
             image = product.find_attachment_by_filename(filename)
 
-            expect(image.filename.to_s).to match(/#{filename}.jpg/)
+            expect(image.filename.to_s).to match(/#{filename}.png/)
           end
         end
       end

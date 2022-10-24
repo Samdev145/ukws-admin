@@ -37,14 +37,14 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @employee.destroy
 
-    redirect_to root_path
+    redirect_to employees_path
   end
 
   private
 
   def employee_params
     params.require(:employee).permit(
-      :contact_number, :job, :introduction, :name, :email, :calendar_id, :avatar
+      :contact_number, :job, :introduction, :name, :email, :calendar_id, :preferred_start_time, :avatar
     )
   end
 end

@@ -9,6 +9,7 @@ class CreateEmployees < ActiveRecord::Migration[7.0]
       t.string :contact_number, null: false
       t.string :job, null: false
       t.text :introduction
+      t.time :preferred_start_time
       t.string :time_zone, default: 'UTC'
 
       t.timestamps
