@@ -15,6 +15,8 @@ module UkwsAdmin
 
     config.action_mailer.smtp_timeout = ENV['SMTP_TIMEOUT'].to_i
 
+    config.exceptions_app = self.routes
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
