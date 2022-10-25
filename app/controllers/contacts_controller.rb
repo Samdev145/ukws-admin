@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ContactsController < ApplicationController
-  layout 'search', only: :index
-
   def index
     @session_details = session[:zoho]
 
@@ -17,6 +15,8 @@ class ContactsController < ApplicationController
 
   def show
     @contact = crm_client.find_contact_by_id(params[:id])
+
+    render 'errors/not_found', :status => '404' if @contact.nil?
   end
 
   def create

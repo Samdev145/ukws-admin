@@ -15,6 +15,8 @@ module Zoho
     def self.find_by_id(client, id)
       response = client.get("Contacts/#{id}")
 
+      return nil if response.body.nil?
+
       new(response.body['data'][0])
     end
 

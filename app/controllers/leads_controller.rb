@@ -15,6 +15,8 @@ class LeadsController < ApplicationController
 
   def show
     @lead = crm_client.find_lead_by_id(params[:id])
+
+    render 'errors/not_found', :status => '404' if @lead.nil?
   end
 
   def send_email

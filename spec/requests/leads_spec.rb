@@ -138,11 +138,11 @@ RSpec.describe LeadsController, type: :request do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:not_found)
       end
 
       it 'renders the show template' do
-        expect(response).to render_template('show')
+        expect(response).to render_template('errors/not_found')
       end
     end
   end

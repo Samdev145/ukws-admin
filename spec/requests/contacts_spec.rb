@@ -124,7 +124,25 @@ RSpec.describe ContactsController, type: :request do
       end
     end
 
-    xcontext 'when the contact is not found' do
+    context 'when the contact is not found' do
+      let(:contact) { nil }
+      let(:id) { 2 }
+
+      before do
+        get contact_path(id)
+      end
+
+      it 'assigns @contact' do
+        expect(assigns(:contact)).to be_nil
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'renders the show template' do
+        expect(response).to render_template('errors/not_found')
+      end
     end
   end
 end
