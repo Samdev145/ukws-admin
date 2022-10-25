@@ -2,9 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Leads', type: :request do
-  let(:target_controller) { LeadsController }
-
+RSpec.describe LeadsController, type: :request do
   let(:crm_session) do
     {
       CRM::Provider => {
@@ -46,14 +44,9 @@ RSpec.describe 'Leads', type: :request do
     )
   end
 
-  let(:flash) do
-    ActionDispatch::Flash::FlashHash.new
-  end
-
   before do
     allow_any_instance_of(ActionDispatch::Request::Session).to receive(:[]).and_return(crm_session)
     allow(CRM::Client).to receive(:new).and_return(crm_client)
-    allow_any_instance_of(target_controller).to receive(:flash).and_return(flash)
   end
 
   describe 'GET /leads' do
@@ -89,11 +82,11 @@ RSpec.describe 'Leads', type: :request do
       end
 
       it 'sets the flash message' do
-        expect(flash).
-          to receive(:[]=).
-          with('alert', 'No leads could be found by matching the email you provided')
+        expect(flash)
+          .to receive(:[]=)
+          .with('alert', 'No leads could be found by matching the email you provided')
 
-          get leads_path, params: search_params
+        get leads_path, params: search_params
       end
     end
 
@@ -135,6 +128,7 @@ RSpec.describe 'Leads', type: :request do
     context 'when the lead is not found' do
       let(:lead) { nil }
       let(:id) { 2 }
+
       before do
         get lead_path(id)
       end

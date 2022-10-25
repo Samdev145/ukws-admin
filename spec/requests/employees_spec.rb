@@ -2,9 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Employees', type: :request do
-  let(:target_controller) { EmployeesController }
-
+RSpec.describe EmployeesController, type: :request do
   let(:crm_session) do
     {
       CRM::Provider => {
@@ -24,14 +22,9 @@ RSpec.describe 'Employees', type: :request do
     )
   end
 
-  let(:flash) do
-    ActionDispatch::Flash::FlashHash.new
-  end
-
   before do
     allow_any_instance_of(ActionDispatch::Request::Session).to receive(:[]).and_return(crm_session)
     allow(CRM::Client).to receive(:new).and_return(crm_client)
-    allow_any_instance_of(target_controller).to receive(:flash).and_return(flash)
   end
 
   describe 'GET /employees' do

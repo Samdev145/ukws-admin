@@ -22,6 +22,8 @@ require 'dotenv'
 
 Dotenv.load('.env.test.local')
 
+require 'requests/shared_examples/flash_messaging'
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -98,4 +100,5 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+  config.include_context 'flash messaging', type: :request
 end
