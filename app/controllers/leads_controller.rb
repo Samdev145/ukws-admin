@@ -14,40 +14,52 @@ class LeadsController < ApplicationController
   end
 
   def show
+    @errors = []
+
     @lead = crm_client.find_lead_by_id(params[:id])
+    @installer = Employee.find_by_name(@lead.installed_by)
+
+    @errors << "Installer #{@lead.installed_by} not found" if @installer.nil?
 
     render 'errors/not_found', :status => '404' if @lead.nil?
   end
 
   def book_appointment
-    employee = Employee.find(params[:employee_id])
+    @errors = []
 
-    lead = crm_client.find_lead_by_id(params[:id])
-    installer = Employee.find_by_name(lead.installed_by)
+    @lead = crm_client.find_lead_by_id(params[:id])
 
-    softener_image = Product.main_photo_for(lead.water_softener_model.downcase)
+    @installer = Employee.find_by_name(@lead.installed_by)
+    softener_image = Product.main_photo_for(@lead.water_softener_model.downcase)
 
-    year, month, day = lead.installation_date.split('-').map(&:to_i)
+    @errors << "Installer '#{@lead.installed_by}' not found" if @installer.nil?
+    @errors << "Softener Image for '#{@lead.water_softener_model}' not found" if softener_image.nil?
+
+    if @errors.any?
+      render :show and return
+    end
+
+    year, month, day = @lead.installation_date.split('-').map(&:to_i)
     start_time = DateTime.new(year, month, day, *params[:start_time].split(':').map(&:to_i))
     end_time = start_time + params[:appointment_duration].to_i.hours
-
-    ContactMailer.with(
-      lead: lead,
-      installer: installer,
-      start_time: start_time,
-      softener_image: softener_image
-    ).installation_email.deliver_later
-
-    ContactMailer.with(lead: lead, installer: installer).survey_email.deliver_later
 
     calendar_client.schedule(
       start_time: start_time,
       end_time: end_time,
-      calendar_id: employee.calendar_id,
-      description: "Phone: #{lead.phone}, What3Words: #{lead.what3words}",
-      summary: "[TEST]: #{lead.full_name}",
-      location: lead.address
+      calendar_id: @installer.calendar_id,
+      description: "Phone: #{@lead.phone}, What3Words: #{@lead.what3words}",
+      summary: "[TEST]: #{@lead.full_name}",
+      location: @lead.address
     )
+
+    ContactMailer.with(
+      lead: @lead,
+      installer: @installer,
+      start_time: start_time,
+      softener_image: softener_image
+    ).installation_email.deliver_later
+
+    ContactMailer.with(lead: @lead, installer: @installer).survey_email.deliver_later
 
     redirect_to :leads
   end

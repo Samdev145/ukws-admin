@@ -1,4 +1,4 @@
-<h1>Show Lead</h1>
+<h1>Lead</h1>
 
 <% if @lead %>
   <table class="table">
@@ -14,30 +14,39 @@
 
   <h2>Book Installation</h2>
 
-  <%= form_tag(book_appointment_lead_path) do -%>
-    <%= hidden_field_tag 'id', @lead.id %>
-
-    <div class="mb-3 row">
-      <%= label_tag(:employee_id, 'Employee', class: 'col-sm-2 col-form-label') %>
-      <div class="col-sm-10">
-        <%= select_tag "employee_id", options_from_collection_for_select(Employee.all, :id, :name), class: 'form-select' %>
-      </div>
+  <% if @errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <p>Unable to book installation due to the following errors:</p>
+      <ul>
+        <% @errors.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
 
-    <div class="mb-3 row">
-      <%= label_tag(:start_time, 'Start Time', class: 'col-sm-2 col-form-label') %>
-      <div class="col-sm-10">
-        <%= time_field_tag "start_time", Employee.find_by_name(@lead.installed_by).preferred_start_time.to_formatted_s(:time) %>
+  <% if @installer.present? %>
+
+    <p>To be installed by <%= @installer.name %></p>
+
+    <%= form_tag(book_appointment_lead_path) do -%>
+      <%= hidden_field_tag 'id', @lead.id %>
+
+      <div class="mb-3 row">
+        <%= label_tag(:start_time, 'Start Time', class: 'col-sm-2 col-form-label') %>
+        <div class="col-sm-10">
+          <%= time_field_tag "start_time", @installer.preferred_start_time.to_formatted_s(:time) %>
+        </div>
       </div>
-    </div>
 
-    <div class="mb-3 row">
-      <%= label_tag(:appointment_duration, 'Appointment Duration', class: 'col-sm-2 col-form-label') %>
-      <div class="col-sm-10">
-        <%= select_tag "appointment_duration", options_for_select(1..24, 4), class: 'form-select form-select-lg mb-3' %>
+      <div class="mb-3 row">
+        <%= label_tag(:appointment_duration, 'Appointment Duration', class: 'col-sm-2 col-form-label') %>
+        <div class="col-sm-10">
+          <%= select_tag "appointment_duration", options_for_select(1..24, 4), class: 'form-select form-select-lg mb-3' %>
+        </div>
       </div>
-    </div>
 
-    <div><%= submit_tag 'Book Installation', class: "btn btn-primary" %></div>
-  <% end -%>
+      <div><%= submit_tag 'Book Installation', class: "btn btn-primary" %></div>
+    <% end -%>
+  <% end %>
 <% end %>
