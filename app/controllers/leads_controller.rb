@@ -25,8 +25,7 @@ class LeadsController < ApplicationController
     lead = crm_client.find_lead_by_id(params[:id])
     installer = Employee.find_by_name(lead.installed_by)
 
-    softener_image = Product.find_by_name(lead.water_softener_model.downcase)
-                            .find_attachment_by_filename(:main_photo)
+    softener_image = Product.main_photo_for(lead.water_softener_model.downcase)
 
     year, month, day = lead.installation_date.split('-').map(&:to_i)
     start_time = DateTime.new(year, month, day, *params[:start_time].split(':').map(&:to_i))
