@@ -14,6 +14,17 @@
 
   <h2>Book Installation</h2>
 
+  <% if @appointment && @appointment.errors %>
+    <div class="alert alert-danger" role="alert">
+      <p>Unable to book installation due to the following errors:</p>
+      <ul>
+        <% @appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <% if @errors.any? %>
     <div class="alert alert-danger" role="alert">
       <p>Unable to book installation due to the following errors:</p>
