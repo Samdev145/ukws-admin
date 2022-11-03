@@ -38,19 +38,18 @@
         </ul>
       </div>
       
+
       <div style="width:50%;border: 2px solid yellow;">
-        <p>Image To Go Here</p>
-        <p><%= url_for(@softener_image)%></p>
-        <image src="<%= url_for(@softener_image)%>">
+        <%= image_tag(@softener_image) %>
       </div>
+
     </div>
 
     <p>Extra notes:</p>
     
     <div style="display: flex;">
       <div style="width:50%;border: 2px solid yellow;">
-        <p>Image To Go Here</p>
-        <p><%= url_for(@installer.avatar)%></p>
+        <%= image_tag(@installer.avatar) %>
       </div>
 
       <div style="width:50%;border: 2px solid yellow;">
