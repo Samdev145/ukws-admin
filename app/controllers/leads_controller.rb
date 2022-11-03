@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LeadsController < ApplicationController
+  before_action :authenticate_calendar_client_user, only: :book_appointment
+
   def index
     @session_details = session[:zoho]
 
