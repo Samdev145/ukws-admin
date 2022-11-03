@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem 'delayed_job_active_record'
 
 gem 'google-apis-calendar_v3'
 gem 'omniauth-google-oauth2'

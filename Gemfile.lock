@@ -101,6 +101,11 @@ GEM
     cssbundling-rails (1.1.1)
       railties (>= 6.0.0)
     declarative (0.0.20)
+    delayed_job (4.1.11)
+      activesupport (>= 3.0, < 8.0)
+    delayed_job_active_record (4.1.7)
+      activerecord (>= 3.0, < 8.0)
+      delayed_job (>= 3.0, < 5)
     diff-lcs (1.5.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -388,6 +393,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   cssbundling-rails (~> 1.1)
+  delayed_job_active_record
   dotenv-rails
   factory_bot_rails
   google-apis-calendar_v3
