@@ -8,7 +8,7 @@
       <div class="row g-0">
         <div class="col-md-4">
           <% if employee.avatar.attached? %>
-            <image src="<%= url_for(@employee.avatar) %>" class="img-fluid rounded-start">
+            <image src="<%= url_for(employee.avatar) %>" class="img-fluid rounded-start">
           <% end %>
         </div>
         <div class="col-md-8">
