@@ -7,4 +7,5 @@ require 'zoho/lead'
 
 module Zoho
   PROVIDER = 'zoho'
+  FRIENDLY_NAME = 'Zoho'
 end

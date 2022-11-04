@@ -4,14 +4,14 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user
 
   def authenticate_user
-    redirect_to :login if session[CRM::PROVIDER].nil? || crm_client.invalid_session?
+    redirect_to '/crm/login' if session[CRM::PROVIDER].nil? || crm_client.invalid_session?
   end
 
   def authenticate_calendar_client_user
-    if session[CALENDAR::PROVIDER].nil?
-      flash[:alert] = 'Sign in using google if you want to be able to book appointments'
-      redirect_to :login
-    end
+    return unless session[CALENDAR::PROVIDER].nil?
+
+    flash[:alert] = 'Sign in using google if you want to be able to book appointments'
+    redirect_to '/calendar/login'
   end
 
   private
