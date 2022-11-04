@@ -20,7 +20,7 @@ module MicrosoftOffice365
 
     def download_file_to(path = nil)
       resp = HTTParty.get(download_url)
-      File.open("#{Rails.root}#{path}/#{name}", 'wb') { |f| f.write(resp.parsed_response) }
+      File.binwrite("#{Rails.root}#{path}/#{name}", resp.parsed_response)
     end
   end
 end

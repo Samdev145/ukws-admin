@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module MyGoogle
-  class Calendar
+  class Client
     attr_reader :calendar
 
     def initialize(session)

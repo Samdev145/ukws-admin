@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'zoho/session'
-require 'zoho/contact'
-require 'zoho/lead'
-
 module Zoho
   class Client
     def initialize(session)

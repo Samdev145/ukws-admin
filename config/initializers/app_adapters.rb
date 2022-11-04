@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-require 'zoho/client'
-require 'my_google/calendar'
-require 'microsoft_office365/client'
+require 'zoho'
+require 'my_google'
+require 'microsoft_office365'
 
 CRM = Zoho
-CRM::Provider = 'zoho'
 
-CALENDAR_CLIENT = MyGoogle::Calendar
-CALENDAR_CLIENT::Provider = 'google_oauth2'
+CALENDAR = MyGoogle
 
 FileStorage = MicrosoftOffice365
-FileStorage::Provider = 'microsoft_office365'

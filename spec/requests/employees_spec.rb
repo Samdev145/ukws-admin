@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe EmployeesController, type: :request do
   let(:crm_session) do
     {
-      CRM::Provider => {
+      CRM::PROVIDER => {
         api_domain: 'https://zoho.domain.test',
         email: 'testadminuser@test.com',
         expires_at: 3600,
