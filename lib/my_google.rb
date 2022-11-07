@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'my_google/session'
 require 'my_google/calendar'
 
 module MyGoogle

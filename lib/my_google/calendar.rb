@@ -2,11 +2,10 @@
 
 module MyGoogle
   class Client
-    attr_reader :calendar
-
     def initialize(session)
+      @session = session
       @calendar = ::Google::Apis::CalendarV3::CalendarService.new
-      calendar.authorization = session['token']
+      calendar.authorization = session.token
     end
 
     def schedule(opts = {})
@@ -21,7 +20,13 @@ module MyGoogle
       calendar.insert_event(opts[:calendar_id], event)
     end
 
+    def invalid_session?
+      session.invalid_session?
+    end
+
     private
+
+    attr_reader :session, :calendar
 
     def event_time(time)
       Google::Apis::CalendarV3::EventDateTime.new(
