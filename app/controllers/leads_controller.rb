@@ -41,9 +41,9 @@ class LeadsController < ApplicationController
     )
 
     if @appointment.save
-      @appointment.send_customer_email(@lead)
-      @appointment.send_survey_email(@lead)
-      @appointment.add_to_calendar(calendar_client, @lead)
+      @appointment.send_customer_email(@lead, params[:test])
+      @appointment.send_survey_email(@lead, params[:test])
+      @appointment.add_to_calendar(calendar_client, @lead, params[:test])
 
       flash[:success] = 'Installation has succesfully been booked'
 

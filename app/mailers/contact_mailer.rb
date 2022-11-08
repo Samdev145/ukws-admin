@@ -10,7 +10,10 @@ class ContactMailer < ApplicationMailer
     @start_time = params[:start_time]
     @softener_image = params[:softener_image]
 
-    mail(to: @lead.email, subject: 'Installation Appointment')
+    mail(
+      to: email_to(@lead.email, params[:test_mode]),
+      subject: 'Installation Appointment'
+    )
   end
 
   def survey_email
@@ -25,6 +28,17 @@ class ContactMailer < ApplicationMailer
       attachments[img.name.to_s] = response.parsed_response
     end
 
-    mail(to: @installer.email, subject: 'Survey Details')
+    mail(
+      to: email_to(@lead.email, params[:test_mode]),
+      subject: 'Survey Details'
+    )
+  end
+
+  private
+
+  def email_to(record, test_mode=nil)
+    return record.email if test_mode.nil?
+
+    ENV.fetch('EMAIL_TEST_ADDRESS')
   end
 end
