@@ -1,82 +1,244 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
+<div>
+  <style>
+    @media only screen and (max-width: 480px){
+      table[class=contentOuter] {background:rgba(0,0,0,0) !important;}
+      table[class=contentInner] {width:100% !important;padding:0px;margin:0px;}
+      img[class=ukwsImage]{width:260px !important;max-width: 360px !important;text-align:center;margin:0px;padding:0px;} 
+      body, table, td, p, a, li,div,span, blockquote{-webkit-text-size-adjust:none !important;}
+      blockquote{outline:none !important;border: none !important;}
+          body{margin: 0px;}
+          pre{white-space: pre-wrap;}
+      table[class=ukwsImageCaption]{text-align:left;}
+      table[class=cols]{width:100% !important;max-width:100% !important;text-align:left;}
+      table[class=ukwscolumns] {text-align:left;margin:0px;} 
+      table[class=ukwscolumn] {text-align:left;margin:0px;} 
+      table[class=ukwsAlignPos]{width:100%;text-align:left;margin:0px;} 
+      .table table img{width: auto !important;max-width: 100% !important;min-width: auto;max-height: none !important;}
+      td[class=txtsize]{font-size:18px !important;}
+      td[class=paddingcomp]{padding-left:15px !important;padding-right: 15px !important;}
+      td[class=bannerimgpad]{padding:0px !important;}
+      span[class=txtsize]{font-size:18px !important;}
+      img.imgsize_B{width: 100% !important;max-width:100% !important;margin: 0px !important;padding:0px !important;}
+      img.imgsize_F{width: 100% !important;max-width:100% !important;margin: 0px !important;padding:0px !important;}
+      img.imgsize_S{width: 100% !important;max-width:105px !important;height:auto; margin:0px auto !important;padding:0px !important;}
+      img.imgsize_M{width: 100% !important;max-width:227.869px !important;height:auto; margin:0px auto !important;padding:0px !important;}
+      img.imgsize_O{max-width: 100% !important;width: auto !important;height: auto !important;}
+      .buttonInnerLink{
+          width: 100% !important;
+              max-width: 250px !important;
+          display: inline-block !important;
+              word-wrap:break-word !important;
+              text-align: center !important;
+      }
+          .buttonOuterLink{
+          width: 100% !important;
+              max-width: 290px !important;
+          display: inline-block !important;
+              word-wrap:break-word !important;
+              text-align: center !important;
+      }
+      h1{
+        font-size:28px !important;
+        line-height:100% !important;
+      }
+      h2{
+        font-size:24px !important;
+        line-height:100% !important;
+      }
+      h3{
+        font-size:20px !important;
+        line-height:100% !important;
+      }
+      h4{
+        font-size:18px !important;
+        line-height:100% !important;
+      }
+        #contentOuter .contentmaintd{
+            vertical-align: top;
+            padding: 0px !important;
+        }
+      }
+      @media only screen and (max-width: 480px){
+      .ukwsImage{
+        height:auto !important;
+        width:100% !important;
+      }}
+      @media only screen and (max-width: 480px){
+      .contentInner,.cols,.ukwsAlignPos{
+        width:100% !important;
+        max-width:100% !important;
+      }}
+      @media only screen and (max-width: 480px){
+      .paddingcomp{
+        padding-left:15px !important;
+        padding-right:15px !important;
+      }
+      .bannerimgpad{
+        padding:0px !important;
+      }
+    }
+      @media screen and (max-width: 480px)
+          {
+                  .tmplheader,.tmplfooter{width:100% !important;max-width:400px !important;margin:0px auto;text-align:center;}
+          }
+      a[x-apple-data-detectors] {
+          color: inherit !important;
+          text-decoration: none !important;
+          font-size: inherit !important;
+          font-family: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+      }
+  </style>
+  <table class="contentOuter" id="contentOuter" cellpadding="0" cellspacing="0" width="100%" style="width:100%;border:0px;font-family:Arial, Helvetica, sans-serif;color:rgb(17, 17, 17);font-size:13px;border-collapse:collapse;letter-spacing:normal;text-rendering: optimizeLegibility;background-color:rgb(240, 240, 240);">
+    <tbody>
+      <tr>
+        <td align="center" class="contentmaintd" style="border:0px;padding-top:10px;padding-bottom:20px;">
+          <table class="contentInner" id="contentInner" cellpadding="0" cellspacing="0" width="600px" style="width:600px;border:0px;border-collapse:collapse;table-layout:fixed;background-color:rgb(255, 255, 255);">
+            <tbody>
+              <tr>
+                <td valign="top" style="border:0px;word-wrap:break-word;word-break:break-word;">
+                  <div class="ukwscontent-wrapper" id="page-container">
+                    <table cellspacing="0" cellpadding="0" style="min-width:100%;max-width:100%;table-layout:fixed;border:0px;border-collapse:collapse;" width="100%">
+                      <tbody>
 
-    <div>
-      <p>Image To Go Here - (Banner) </p>
-    </div>
+                        <%= add_spacer %>
 
-    <h1><%= @lead.full_name %> Installation Letter</h1>
+                        <%= row_single_column(
+                          "<p style='width: 100%; padding: 0px; margin: 0px'>
+                            <img
+                              class='ukwsImage imgsize_F'
+                              alt='UKWS logo and slogan'
+                              style='width: 100%; max-width: 100%; vertical-align: top'
+                              imgsize='F'
+                              src='https://ukws-admin.s3.eu-west-2.amazonaws.com/ukws-banner.png'
+                              orgwidth='7426'
+                              width='540'
+                              height='34.8984'
+                            >
+                          </p>"
+                        ) %>
 
-    <p><%= @lead.address %></p>
-    
-    <p><%= @lead.phone %></p>
-    
-    <p>Our plumber <strong><%= @installer.name %></strong> will be with you on between <strong><%= "#{@start_time.strftime("%I:%M")}-#{(@start_time + 30.minutes).strftime("%I:%M%P") }" %></strong><p>
-    
-    <div style="display: flex;">
-      <div style="width:50%;border: 2px solid yellow;">
-        <h2>Price - <%= @lead.total_cost %></h2>
-        
-        <p>Price Includes:</p>
+                        <%= row_single_column(
+                          "
+                            #{ paragraph("<b>#{@lead.full_name} Installation Letter</b>", { size: :large }) }
 
-        <ul>
-          <li>VAT</li>
-          <li><%= @lead.water_softener_model %> Water Softener</li>
-          <li><%= @lead.softener_warranty_details %></li>
-          <li><%= @lead.salt_quantity %> Packs of Block Salt</li>
-          <li><%= @lead.installation_type %></li>
-          <% if @lead.drinking_tap %>
-            <li><%= @lead.drinking_tap%></li>
-          <% end %>
-          <% if @lead.drinking_water_filter %>
-            <li><%= @lead.drinking_water_filter %></li>
-          <% end %>
-        </ul>
-      </div>
-      
+                            #{ paragraph(@lead.address) }
 
-      <div style="width:50%;border: 2px solid yellow;">
-        <%= image_tag(@softener_image) %>
-      </div>
+                            #{ paragraph(@lead.phone) }
 
-    </div>
+                            </br>
 
-    <p>Extra notes:</p>
-    
-    <div style="display: flex;">
-      <div style="width:50%;border: 2px solid yellow;">
-        <%= image_tag(@installer.avatar) %>
-      </div>
+                            #{ paragraph("Our plumber <b>#{@installer.name}</b> will be with you on <b>#{@lead.installation_date}</b> between <b>#{@start_time.strftime("%I:%M")}-#{(@start_time + 30.minutes).strftime("%I:%M%P") }</b>") }
+                          "
+                        ) %>
 
-      <div style="width:50%;border: 2px solid yellow;">
-        <h2>Meet your installer</h2>
+                        <%= add_spacer %>
 
-        <p><%= @installer.name %></p>
+                        <%= row_double_column(
+                          "
+                            #{ paragraph("<b>Price - £#{@lead.total_cost}</b>", { size: :large }) }
 
-        <p><%= @installer.introduction %></p>
+                            </br>
 
-        <p style="font-family:'Comic Sans MS', 'sans-serif'">
-          Thank you for placing your business with us and please get in touch if you need anything.
-        </p>
-        <p style="font-family:'Comic Sans MS', 'sans-serif'">
-          <strong>
-            Enjoy your soft water!
-          </strong>
-        </p>
-      </div>
-    </div>
-    
-    <p>
-      <strong>
-        If you have any questions at all please do not hesitate to contact me.
-      </strong>
-    </p>
+                            #{ paragraph('Price Includes:') }
 
-    <%= render "sarah_signature" %>
+                            <ul>
+                              #{ li_item("VAT") }
+                              #{ li_item("#{@lead.water_softener_model} Water Softener") if @lead.water_softener_model }
+                              #{ li_item("#{@lead.salt_quantity} Packs of Block Salt") if @lead.salt_quantity }
+                              #{ li_item("#{@lead.installation_type}") if @lead.installation_type }
+                              #{ li_item("Tap: #{@lead.drinking_tap}") if @lead.drinking_tap }
+                            </ul>
+                          ",
 
-  </body>
-</html>
+                          "<p style='padding: 0px; margin: 0px'>
+                            #{
+                              image_tag(@softener_image,
+                                class: 'ukwsImage imgsize_F',
+                                style: 'width: 100%; max-width: 100%; vertical-align: top'
+                              )
+                            }
+                          </p>"
+                        ) %>
+
+                        <%= row_single_column( "#{ paragraph('Extra notes:') }") %>
+
+                        <%= row_double_column(
+                          "<p style='padding: 0px; margin: 0px'>
+                            #{
+                              image_tag(@installer.avatar,
+                                class: 'ukwsImage imgsize_F',
+                                style: 'width: 100%; max-width: 100%; vertical-align: top'
+                              )
+                            }
+                          </p>",
+
+                          "
+                            <br/>
+
+                            #{ paragraph('Meet your installer', { size: :large }) }
+
+                            <br/>
+
+                            #{ paragraph("#{@installer.name}") }
+
+                            <br/>
+
+                            #{ paragraph("#{@installer.introduction}") }
+
+                            <br/>
+
+                            #{
+                              paragraph(
+                                'Thank you for placing your business with us and please get in touch if you need anything.',
+                                font: 'Comic Sans MS, cursive, sans-serif'
+                              )
+                            }
+
+                            <br/>
+
+                            #{
+                              paragraph(
+                                'Enjoy your soft water!',
+                                font: 'Comic Sans MS, cursive, sans-serif'
+                              )
+                            }
+
+                            <br/>
+                          "
+                        ) %>
+
+                        <%= row_single_column("<b>If you have any questions at all please do not hesitate to contact me.</b>") %>
+
+                        <%= row_single_column(render 'contact_mailer/sarah_signature') %>
+
+                        <%= add_spacer %>
+
+                        <%= row_single_column(
+                          '<p style="width: 100%; padding: 0px; margin: 0px">
+                            <img
+                              class="ukwsImage imgsize_F"
+                              alt="Cobolt Softener in kitchen"
+                              style="width: 100%; max-width: 100%; vertical-align: top"
+                              imgsize="F"
+                              src="https://crm.zoho.eu/crm/viewInLineImage?fileContent=d59fa37d4bf4d8c3efa2992f4e99fa6af5e649db6b49462e0ab5177a102bf678f3eaeb4b9aad37a80b591000ef75c91542519ef9251b2ca6d7645c7b631a2350494c0b603d3b1f828f26d448455afd8443dc558f7c7bea8bea9edd35c9bc3d18"
+                              orgwidth="560"
+                              width="540"
+                              height="359.672"
+                            >
+                          </p>'
+                        ) %>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

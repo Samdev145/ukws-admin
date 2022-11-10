@@ -52,4 +52,15 @@ class LeadsController < ApplicationController
       render :show
     end
   end
+
+  def installation_email
+    @lead = crm_client.find_lead_by_id(params[:id])
+    @installer = Employee.find_by_name(@lead.installed_by)
+
+    year, month, day = @lead.installation_date.split('-').map(&:to_i)
+    @start_time = DateTime.new(year, month, day, *params[:start_time].split(':').map(&:to_i))
+    @softener_image = Product.main_photo_for(@lead.water_softener_model.downcase)
+
+    render 'contact_mailer/installation_email'
+  end
 end

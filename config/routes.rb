@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       post :send_email
       post :book_appointment
+      get :installation_email
     end
   end
   resources :employees

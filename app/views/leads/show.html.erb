@@ -93,5 +93,25 @@
 
       <div><%= submit_tag 'Book Installation', class: "btn btn-primary" %></div>
     <% end -%>
+
+    <%= form_tag(installation_email_lead_path, method: :get) do -%>
+      <%= hidden_field_tag 'id', @lead.id %>
+
+      <div class="mb-3 row">
+        <%= label_tag(:start_time, 'Start Time', class: 'col-sm-2 col-form-label') %>
+        <div class="col-sm-10">
+          <%= time_field_tag "start_time", @installer.preferred_start_time.to_formatted_s(:time) %>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <%= label_tag(:appointment_duration, 'Appointment Duration', class: 'col-sm-2 col-form-label') %>
+        <div class="col-sm-10">
+          <%= select_tag "appointment_duration", options_for_select(1..24, 4), class: 'form-select form-select-lg mb-3' %>
+        </div>
+      </div>
+
+      <div><%= submit_tag 'Preview Installation Email', class: "btn btn-primary" %></div>
+    <% end -%>
   <% end %>
 <% end %>
