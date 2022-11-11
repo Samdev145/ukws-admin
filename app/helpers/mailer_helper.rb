@@ -46,8 +46,8 @@ module MailerHelper
   end
 
   def paragraph(content, opts={})
-    rgb_color = opts[:size] == :large ? 'rgb(0, 0, 0)' : 'rgb(17, 17, 17)'
-    font_size = opts[:size] == :large ? 4 : 2
+    font_size = font_converter(opts[:size])
+    rgb_color = font_size == :large ? 'rgb(0, 0, 0)' : 'rgb(17, 17, 17)'
     font_family = opts[:font] ? opts[:font] : default_font_family
 
     raw(
@@ -96,6 +96,17 @@ module MailerHelper
 
   private
 
+  def font_converter(size=nil)
+    case size
+    when :large then 4
+    when :small then 2
+    when :tiny then 1
+    else
+      2
+    end
+  end
+
+
   def column(content, single: false)
     width = single ? '100%' : '48.5%'
 
@@ -128,5 +139,4 @@ module MailerHelper
       </tbody>
     </table>"
   end
-
 end

@@ -121,7 +121,7 @@
 
                         <%= row_single_column(
                           "
-                            #{ paragraph("<b>#{@lead.full_name} Installation Letter</b>", { size: :large }) }
+                            #{ paragraph("<b>#{@lead.full_name} Installation Details</b>", { size: :large }) }
 
                             #{ paragraph(@lead.address) }
 
@@ -213,7 +213,12 @@
 
                         <%= row_single_column(render 'contact_mailer/sarah_signature') %>
 
-                        <%= add_spacer %>
+                        <%= row_single_column("#{
+                            paragraph(
+                              'Uk Water Softeners Limited T/A Uk Water Softeners. Is a company registered in England & Wales – Company No.14243453 Registered address: 13/17 High Beech Road, Loughton, Essex, IG10 4BN',
+                              { size: :tiny }
+                            )}"
+                        )%>
 
                         <%= row_single_column(
                           '<p style="width: 100%; padding: 0px; margin: 0px">
