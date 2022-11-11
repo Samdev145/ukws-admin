@@ -11,7 +11,7 @@ class ContactMailer < ApplicationMailer
     @softener_image = params[:softener_image]
 
     mail(
-      to: email_to(@lead.email, params[:test_mode]),
+      to: email_to(@lead, params[:test_mode]),
       subject: 'Installation Appointment'
     )
   end
@@ -29,7 +29,7 @@ class ContactMailer < ApplicationMailer
     end
 
     mail(
-      to: email_to(@lead.email, params[:test_mode]),
+      to: email_to(@lead, params[:test_mode]),
       subject: 'Survey Details'
     )
   end
