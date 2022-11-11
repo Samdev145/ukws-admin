@@ -29,8 +29,10 @@ class LeadsController < ApplicationController
     @lead = crm_client.find_lead_by_id(params[:id])
     @installer = Employee.find_by_name(@lead.installed_by)
 
+    Time.zone = @installer.time_zone
+
     year, month, day = @lead.installation_date.split('-').map(&:to_i)
-    start_time = DateTime.new(year, month, day, *params[:start_time].split(':').map(&:to_i))
+    start_time = Time.zone.local(year, month, day, *params[:start_time].split(':').map(&:to_i))
     end_time = start_time + params[:appointment_duration].to_i.hours
 
     @appointment = InstallationAppointment.build_new(
@@ -41,6 +43,7 @@ class LeadsController < ApplicationController
     )
 
     if @appointment.save
+
       @appointment.send_customer_email(@lead, params[:test])
       @appointment.send_survey_email(@lead, params[:test])
       @appointment.add_to_calendar(calendar_client, @lead, params[:test])
@@ -57,8 +60,10 @@ class LeadsController < ApplicationController
     @lead = crm_client.find_lead_by_id(params[:id])
     @installer = Employee.find_by_name(@lead.installed_by)
 
+    Time.zone = @installer.time_zone
+
     year, month, day = @lead.installation_date.split('-').map(&:to_i)
-    @start_time = DateTime.new(year, month, day, *params[:start_time].split(':').map(&:to_i))
+    @start_time = Time.zone.local(year, month, day, *params[:start_time].split(':').map(&:to_i))
     @softener_image = Product.main_photo_for(@lead.water_softener_model.downcase)
 
     render 'contact_mailer/installation_email'

@@ -30,8 +30,7 @@ module MyGoogle
 
     def event_time(time)
       Google::Apis::CalendarV3::EventDateTime.new(
-        date_time: time,
-        time_zone: 'Europe/London'
+        date_time: time.to_datetime
       )
     end
   end

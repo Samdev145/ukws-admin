@@ -35,8 +35,8 @@ class InstallationAppointment < Appointment
     summary.prepend('[TEST]: ') if test_mode
 
     calendar_client.schedule(
-      start_time: start_time.to_datetime,
-      end_time: end_time.to_datetime,
+      start_time: start_time,
+      end_time: end_time,
       calendar_id: employee.calendar_id,
       description: "Phone: #{lead.phone}, What3Words: #{lead.what3words}",
       summary: summary,
