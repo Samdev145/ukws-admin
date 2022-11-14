@@ -8,7 +8,7 @@ class ContactMailer < ApplicationMailer
     @lead = params[:lead]
     @installer = params[:installer]
     @start_time = params[:start_time]
-    @softener_image = params[:softener_image]
+    @product = params[:product]
 
     mail(
       to: email_to(@lead, params[:test_mode]),
