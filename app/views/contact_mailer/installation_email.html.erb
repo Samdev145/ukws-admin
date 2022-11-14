@@ -154,7 +154,7 @@
 
                           "<p style='padding: 0px; margin: 0px'>
                             #{
-                              image_tag(@softener_image,
+                              image_tag(@softener_image.variant(resize_to_limit: [400, 400]),
                                 class: 'ukwsImage imgsize_F',
                                 style: 'width: 100%; max-width: 100%; vertical-align: top'
                               )
@@ -167,7 +167,7 @@
                         <%= row_double_column(
                           "<p style='padding: 0px; margin: 0px'>
                             #{
-                              image_tag(@installer.avatar,
+                              image_tag(@installer.avatar.variant(resize_to_limit: [400, 400]),
                                 class: 'ukwsImage imgsize_F',
                                 style: 'width: 100%; max-width: 100%; vertical-align: top'
                               )

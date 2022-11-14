@@ -7,7 +7,7 @@
   <p>Photos:</p>
   <div>
     <% @product.photos_attachments.each do |photo| %>
-      <image src="<%= url_for(photo)%>">
+      <%= image_tag(photo.variant(resize_to_limit: [400, 400])) %>
     <% end %>
   </div>
 <% end %>

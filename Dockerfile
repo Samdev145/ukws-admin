@@ -3,6 +3,7 @@ FROM ruby:3.0.0
 
 RUN apt-get update && apt-get install -y \
   curl \
+  libvips \
   build-essential \
   libpq-dev &&\
   curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
