@@ -9,7 +9,7 @@
 
 	<div class="form-group">
 		<%= form.label :record_type %>
-		<%= form.text_area :record_type, class: "form-control" %>
+		<%= form.select :record_type, ['water softener', 'tap'], class: "form-control" %>
 		<% product.errors.full_messages_for(:type).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
