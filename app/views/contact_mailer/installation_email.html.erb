@@ -154,7 +154,7 @@
 
                           "<p style='padding: 0px; margin: 0px'>
                             #{
-                              image_tag(@product.main_photo.variant(resize_to_limit: [400, 400]),
+                              image_tag(@product.main_photo.variant(resize_to_limit: [600, 600]),
                                 class: 'ukwsImage imgsize_F',
                                 style: 'width: 100%; max-width: 100%; vertical-align: top'
                               )
@@ -221,18 +221,14 @@
                         )%>
 
                         <%= row_single_column(
-                          '<p style="width: 100%; padding: 0px; margin: 0px">
-                            <img
-                              class="ukwsImage imgsize_F"
-                              alt="Cobolt Softener in kitchen"
-                              style="width: 100%; max-width: 100%; vertical-align: top"
-                              imgsize="F"
-                              src="https://crm.zoho.eu/crm/viewInLineImage?fileContent=d59fa37d4bf4d8c3efa2992f4e99fa6af5e649db6b49462e0ab5177a102bf678f3eaeb4b9aad37a80b591000ef75c91542519ef9251b2ca6d7645c7b631a2350494c0b603d3b1f828f26d448455afd8443dc558f7c7bea8bea9edd35c9bc3d18"
-                              orgwidth="560"
-                              width="540"
-                              height="359.672"
-                            >
-                          </p>'
+                          "<p style='width: 100%; padding: 0px; margin: 0px'>
+                            #{
+                              image_tag(@product.installed_photo.variant(resize_to_limit: [400, 400]),
+                                class: 'ukwsImage imgsize_F',
+                                style: 'width: 100%; max-width: 100%; vertical-align: top'
+                              )
+                            }
+                          </p>"
                         ) %>
 
                       </tbody>
