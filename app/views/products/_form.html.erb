@@ -16,9 +16,25 @@
 	</div>
 
 	<div class="form-group">
-		<%= form.label :photos %>
-		<%= form.file_field :photos, multiple: true, class: "form-control" %>
-		<% product.errors.full_messages_for(:photos).each do |message| %>
+		<%= form.label :main_photo %>
+		<%= form.file_field :main_photo, class: "form-control" %>
+		<% product.errors.full_messages_for(:main_photo).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div class="form-group">
+		<%= form.label :installed_photo %>
+		<%= form.file_field :installed_photo, class: "form-control" %>
+		<% product.errors.full_messages_for(:installed_photo).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div class="form-group">
+		<%= form.label :other_photos %>
+		<%= form.file_field :other_photos, multiple: true, class: "form-control" %>
+		<% product.errors.full_messages_for(:other_photos).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>

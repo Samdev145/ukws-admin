@@ -31,11 +31,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     if @product.update(product_params)
-      if params[:product][:images].present?
-        params[:product][:images].each do |image|
-          @product.images.attach(image)
-        end
-      end
+      
       redirect_to @product
     else
       render :edit
@@ -53,7 +49,7 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(
-      :name, :record_type, photos: []
+      :name, :record_type, :main_photo, :installed_photo, other_photos: []
     )
   end
 end

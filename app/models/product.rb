@@ -1,18 +1,13 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-  has_many_attached :photos
+  has_one_attached :main_photo
+  has_one_attached :installed_photo
+  has_many_attached :other_photos
 
-  validates :name, :record_type, :photos, presence: true
+  validates :name, :record_type, presence: true
 
-  def self.main_photo_for(product_name)
-    record = where('lower(name) = ?', product_name.downcase).first
-    return nil if record.nil?
-
-    record.find_attachment_by_filename(:main_photo)
-  end
-
-  def find_attachment_by_filename(filename)
-    photos_attachments.joins(:blob).where('filename LIKE ?', "#{filename}.%").first
+  def self.find_by_lowercase_name(product_name)
+    where('lower(name) = ?', product_name.downcase).first
   end
 end

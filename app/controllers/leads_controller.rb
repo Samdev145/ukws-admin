@@ -64,7 +64,8 @@ class LeadsController < ApplicationController
 
     year, month, day = @lead.installation_date.split('-').map(&:to_i)
     @start_time = Time.zone.local(year, month, day, *params[:start_time].split(':').map(&:to_i))
-    @softener_image = Product.main_photo_for(@lead.water_softener_model.downcase)
+
+    @product = Product.find_by_lowercase_name(@lead.water_softener_model.downcase)
 
     render 'contact_mailer/installation_email'
   end

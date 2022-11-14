@@ -19,7 +19,7 @@ class InstallationAppointment < Appointment
       lead: lead,
       installer: employee,
       start_time: start_time,
-      softener_image: Product.main_photo_for(softener_name),
+      product: Product.find_by_lowercase_name(softener_name),
       test_mode: test_mode
     ).installation_email.deliver_later
   end
