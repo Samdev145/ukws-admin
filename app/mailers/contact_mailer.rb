@@ -7,7 +7,7 @@ class ContactMailer < ApplicationMailer
   def installation_email
     @lead = params[:lead]
     @installer = params[:installer]
-    @start_time = params[:start_time]
+    @start_time = params[:start_time].to_time
     @product = params[:product]
 
     mail(

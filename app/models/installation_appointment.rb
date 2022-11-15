@@ -18,7 +18,7 @@ class InstallationAppointment < Appointment
     ContactMailer.with(
       lead: lead,
       installer: employee,
-      start_time: start_time,
+      start_time: start_time.to_s,
       product: Product.find_by_lowercase_name(softener_name),
       test_mode: test_mode
     ).installation_email.deliver_later
