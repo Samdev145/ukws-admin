@@ -146,9 +146,10 @@
                             <ul>
                               #{ li_item("VAT") }
                               #{ li_item("#{@lead.water_softener_model} Water Softener") if @lead.water_softener_model }
-                              #{ li_item("#{@lead.salt_quantity} Packs of Block Salt") if @lead.salt_quantity }
+                              #{ li_item("#{@lead.salt_quantity} Packs of #{@lead.salt_type[0]} Salt") if @lead.salt_quantity }
                               #{ li_item("#{@lead.installation_type}") if @lead.installation_type }
-                              #{ li_item("Tap: #{@lead.drinking_tap}") if @lead.drinking_tap }
+                              #{ li_item("Tap: #{@lead.drinking_taps}") if @lead.drinking_taps }
+                              #{ li_item("Filter: #{@lead.drinking_water_filter}") if @lead.drinking_water_filter }
                             </ul>
                           ",
 
@@ -162,7 +163,9 @@
                           </p>"
                         ) %>
 
-                        <%= row_single_column( "#{ paragraph('Extra notes:') }") %>
+                        <% if @lead.customer_notes.present? %>
+                          <%= row_single_column( "#{ paragraph("Extra notes: #{@lead.customer_notes}") }") %>
+                        <% end %>
 
                         <%= row_double_column(
                           "<p style='padding: 0px; margin: 0px'>
@@ -220,16 +223,19 @@
                             )}"
                         )%>
 
-                        <%= row_single_column(
-                          "<p style='width: 100%; padding: 0px; margin: 0px'>
-                            #{
-                              image_tag(@product.installed_photo.variant(resize_to_limit: [400, 400]),
-                                class: 'ukwsImage imgsize_F',
-                                style: 'width: 100%; max-width: 100%; vertical-align: top'
-                              )
-                            }
-                          </p>"
-                        ) %>
+
+                        <% if @product.installed_photo.present? %>
+                          <%= row_single_column(
+                            "<p style='width: 100%; padding: 0px; margin: 0px'>
+                              #{
+                                image_tag(@product.installed_photo.variant(resize_to_limit: [400, 400]),
+                                  class: 'ukwsImage imgsize_F',
+                                  style: 'width: 100%; max-width: 100%; vertical-align: top'
+                                )
+                              }
+                            </p>"
+                          ) %>
+                        <% end %>
 
                       </tbody>
                     </table>

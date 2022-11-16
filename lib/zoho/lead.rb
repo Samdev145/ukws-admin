@@ -23,8 +23,9 @@ module Zoho
     ATTRIBUTES = %w[
       City
       Country
+      Customer_Notes
       Incoming_Mains_Location
-      Drinking_Tap
+      Drinking_Taps
       Drinking_Water_Filter
       Email
       Full_Name
