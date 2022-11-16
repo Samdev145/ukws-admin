@@ -4,7 +4,7 @@
   <%= button_to "Add New Employee", new_employee_path, method: :get, class: "btn btn-primary" %>
 
   <% @employees.each do |employee| %>
-    <div class="card mb-3"">
+    <div class="card mb-3" id="employee_<%= employee.id %>">
       <div class="row g-0">
         <div class="col-md-4">
           <% if employee.avatar.attached? %>
@@ -24,6 +24,7 @@
               <%= button_to "Destroy", employee_path(employee),
                               class: "btn btn-danger btn-sm float-end",
                               method: :delete,
+                              remote: true,
                               data: { confirm: "Are you sure?" } %>
             </div>
           </div>

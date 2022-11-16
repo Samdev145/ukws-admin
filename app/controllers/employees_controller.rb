@@ -37,7 +37,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @employee.destroy
 
-    redirect_to employees_path
+    respond_to do |format|
+      format.html { redirect_to employees_path }
+      format.js
+    end
   end
 
   private
