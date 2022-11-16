@@ -24,7 +24,7 @@
       "Drinking_Water_Filters": null,
       "Total_Cost": null,
       "Street": "8 Somewhere Drive",
-      "Zip_Code": null,
+      "Zip_Code": "XY5 5YX",
       "id": "11111111111111111111112",
       "Incoming_Mains_Location": null,
       "$approval": {
@@ -40,12 +40,12 @@
       "Household_Size1": null,
       "$editable": true,
       "Survey_Photos": null,
-      "City": null,
+      "City": "City",
       "Heating_System1": null,
       "Survey_Notes1": null,
       "Converted_Account": null,
       "Installed_by": "Bob",
-      "Country": null,
+      "Country": "Country",
       "Last_Visited_Time": null,
       "Created_By": {
         "name": "Test Admin User Name",

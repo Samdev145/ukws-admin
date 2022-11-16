@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'zoho/client'
+require 'zoho'
 require 'faraday'
 
 describe Zoho::Lead do
@@ -16,6 +16,9 @@ describe Zoho::Lead do
 
   let(:crm_client) { Zoho::Client.new(session) }
   let(:client) { crm_client.send(:client) }
+  let(:lead_data) do
+    JSON.parse(File.read(File.expand_path('mocks/lead.json', __dir__)))['data'][0]
+  end
 
   describe '.search' do
     let(:search_criteria) do
@@ -76,16 +79,63 @@ describe Zoho::Lead do
 
   Zoho::Lead::ATTRIBUTES.each do |attr|
     describe "##{attr.downcase}" do
-      let(:opts) do
-        JSON.parse(File.read(File.expand_path('mocks/lead.json', __dir__)))
-      end
 
       let(:lead) do
-        described_class.new(opts)
+        described_class.new(lead_data)
       end
 
       it "returns the leads #{attr.downcase}" do
-        expect(lead.send(attr.downcase)).to eq(opts[attr])
+        expect(lead.send(attr.downcase)).to eq(lead_data[attr])
+      end
+    end
+  end
+
+  describe '#address' do
+    let(:lead) do
+      described_class.new(opts)
+    end
+
+    context 'when all address attributes have been set' do
+      let(:opts) { lead_data }
+
+      it 'returns the correctly contructed address' do
+        expect(lead.address).to eq('8 Somewhere Drive, City, Country, XY5 5YX')
+      end
+    end
+
+    context 'when the city has not been set' do
+      let(:opts) do
+        lead_data.tap do |data|
+          data['City'] = nil
+        end
+      end
+
+      it 'returns the correctly contructed address' do
+        expect(lead.address).to eq('8 Somewhere Drive, Country, XY5 5YX')
+      end
+    end
+
+    context 'when the country has not been set' do
+      let(:opts) do
+        lead_data.tap do |data|
+          data['Country'] = nil
+        end
+      end
+
+      it 'returns the correctly contructed address' do
+        expect(lead.address).to eq('8 Somewhere Drive, City, XY5 5YX')
+      end
+    end
+
+    context 'when the zip_code has not been set' do
+      let(:opts) do
+        lead_data.tap do |data|
+          data['Zip_Code'] = nil
+        end
+      end
+
+      it 'returns the correctly contructed address' do
+        expect(lead.address).to eq('8 Somewhere Drive, City, Country')
       end
     end
   end

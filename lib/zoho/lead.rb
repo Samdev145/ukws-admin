@@ -39,7 +39,7 @@ module Zoho
       Installed_by
       Mobile
       Phone
-      Postal_Code
+      Zip_Code
       Salt_Quantity
       Salt_type
       Softener_warranty_details
@@ -61,7 +61,11 @@ module Zoho
     end
 
     def address
-      "#{street}, #{city}, #{country}, #{postal_code}"
+      addr = street
+      addr += ", #{city}" if city
+      addr += ", #{country}" if country
+      addr += ", #{zip_code}" if zip_code
+      addr
     end
   end
 end
