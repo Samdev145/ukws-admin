@@ -42,7 +42,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
 
-    redirect_to products_path
+    respond_to do |format|
+      format.html { redirect_to products_path }
+      format.js
+    end
   end
 
   private

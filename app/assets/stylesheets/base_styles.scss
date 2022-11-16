@@ -1,3 +1,7 @@
+.button-wrap {
+  padding-bottom: 20px;
+}
+
 .central-items {
   width: 100%;
   max-width: 700px;
@@ -7,4 +11,13 @@
 
 .card-icon {
   margin-right: 10px;
+}
+
+.card-details {
+  min-height: 200px;
+}
+
+.card-actions {
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
