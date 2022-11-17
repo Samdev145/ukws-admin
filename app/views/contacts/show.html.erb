@@ -26,21 +26,3 @@
     </td>
   </tr>
 </table>
-
-<h2>Email Contact</h2>
-
-<%= form_tag('/contacts') do -%>
-  <%= hidden_field_tag 'id', @contact.id %>
-
-  <%= label_tag(:installer, 'Installer') %>
-  <%= select_tag "installer", options_from_collection_for_select(Employee.installers, :id, :name) %>
-
-  <%= label_tag(:email_template, 'Email Template') %>
-  <%= select_tag "email_template", options_for_select([ "Installation", "Service" ], "Installation") %>
-
-  <%= label_tag(:test, 'Test Email?') %>
-  <%= check_box_tag 'test' %>
-
-
-  <div><%= submit_tag 'Save', class: "btn btn-primary" %></div>
-<% end -%>

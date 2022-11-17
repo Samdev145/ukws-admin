@@ -18,10 +18,4 @@ class ContactsController < ApplicationController
 
     render 'errors/not_found', :status => '404' if @contact.nil?
   end
-
-  def create
-    @contact = crm_client.find_contact_by_id(params[:id])
-    email_template = params[:email_template].downcase
-    ContactMailer.with(contact: @contact).send("#{email_template}_email").deliver_now
-  end
 end
