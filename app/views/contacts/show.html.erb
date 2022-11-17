@@ -1,33 +1,46 @@
-<h1>Contact</h1>
+<div class="row g-0">
+  <div class="col-md-4">
+    <h1>Contact</h1>
+  </div>
 
-<% if @contact %>
-  <table>
-    <tr>
-      <th>Full Name</th>
-      <th>Email</th>
-    </tr>
-    <tr>
-      <td><%= @contact.full_name %></td>
-      <td><%= @contact.email %></td>
-      </td>
-    </tr>
-  </table>
+  <div class="col-md-8" style="position: relative;">
+    <%= link_to(
+        'Open in CRM',
+        @contact.link_address,
+        target: "_blank",
+        class: "btn btn-success",
+        style: "margin-bottom: 0.5rem; position: absolute; bottom: 0; right: 0;"
+      )
+    %>
+  </div>
+</div>
 
-  <h2>Email Contact</h2>
+<table>
+  <tr>
+    <th>Full Name</th>
+    <th>Email</th>
+  </tr>
+  <tr>
+    <td><%= @contact.full_name %></td>
+    <td><%= @contact.email %></td>
+    </td>
+  </tr>
+</table>
 
-  <%= form_tag('/contacts') do -%>
-    <%= hidden_field_tag 'id', @contact.id %>
+<h2>Email Contact</h2>
 
-    <%= label_tag(:installer, 'Installer') %>
-    <%= select_tag "installer", options_from_collection_for_select(Employee.installers, :id, :name) %>
+<%= form_tag('/contacts') do -%>
+  <%= hidden_field_tag 'id', @contact.id %>
 
-    <%= label_tag(:email_template, 'Email Template') %>
-    <%= select_tag "email_template", options_for_select([ "Installation", "Service" ], "Installation") %>
+  <%= label_tag(:installer, 'Installer') %>
+  <%= select_tag "installer", options_from_collection_for_select(Employee.installers, :id, :name) %>
 
-    <%= label_tag(:test, 'Test Email?') %>
-    <%= check_box_tag 'test' %>
+  <%= label_tag(:email_template, 'Email Template') %>
+  <%= select_tag "email_template", options_for_select([ "Installation", "Service" ], "Installation") %>
+
+  <%= label_tag(:test, 'Test Email?') %>
+  <%= check_box_tag 'test' %>
 
 
-    <div><%= submit_tag 'Save', class: "btn btn-primary" %></div>
-  <% end -%>
-<% end %>
+  <div><%= submit_tag 'Save', class: "btn btn-primary" %></div>
+<% end -%>

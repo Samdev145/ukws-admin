@@ -1,0 +1,50 @@
+{
+  "org": [
+    {
+      "country": "GB",
+      "hierarchy_preferences": {
+        "type": "Role_Hierarchy"
+      },
+      "photo_id": null,
+      "city": null,
+      "description": null,
+      "mc_status": false,
+      "gapps_enabled": false,
+      "lite_users_enabled": false,
+      "domain_name": "orgxxxxxxxx",
+      "translation_enabled": false,
+      "street": null,
+      "alias": null,
+      "currency": "British Pound Sterling",
+      "deletable_org_account": false,
+      "id": "9999999999999",
+      "state": null,
+      "fax": null,
+      "employee_count": null,
+      "zip": null,
+      "website": null,
+      "currency_symbol": "",
+      "mobile": "3456345634734",
+      "currency_locale": "GBP",
+      "primary_zuid": "777777777",
+      "zia_portal_id": null,
+      "time_zone": "Europe/Amsterdam",
+      "zgid": "888888888",
+      "country_code": "GB",
+      "license_details": {
+        "paid_expiry": "2023-02-25T00:00:00+00:00",
+        "users_license_purchased": 20,
+        "trial_type": null,
+        "trial_expiry": null,
+        "paid": true,
+        "paid_type": "professional"
+      },
+      "phone": "2562546452624",
+      "company_name": "Company Name",
+      "privacy_settings": false,
+      "primary_email": "adminuser@test.com",
+      "hipaa_compliance_enabled": false,
+      "iso_code": "GBP"
+    }
+  ]
+}

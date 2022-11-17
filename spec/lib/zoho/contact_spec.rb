@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'zoho/client'
+require 'zoho'
 require 'faraday'
 
 describe Zoho::Contact do
@@ -14,8 +14,17 @@ describe Zoho::Contact do
     )
   end
 
-  let(:crm_client) { Zoho::Client.new(session) }
-  let(:client) { crm_client.send(:client) }
+  let(:client) { Zoho::Client.new(session) }
+  let(:contact_data) do
+    JSON.parse(
+      File.read(File.expand_path('mocks/contact.json', __dir__))
+    )['data'][0]
+  end
+  let(:org_data) do
+    JSON.parse(
+      File.read(File.expand_path('mocks/org.json', __dir__))
+    )['org'][0]
+  end
 
   describe '.search' do
     let(:search_criteria) do
@@ -62,8 +71,13 @@ describe Zoho::Contact do
       File.read(File.expand_path('mocks/contact.json', __dir__))
     end
 
+    let(:org_response) do
+      File.read(File.expand_path('mocks/org.json', __dir__))
+    end
+
     before do
       mock_get('/4353456', 200, contacts_response)
+      mock_get_org(200, org_response)
     end
 
     context 'when successful' do
@@ -76,22 +90,62 @@ describe Zoho::Contact do
 
   Zoho::Contact::ATTRIBUTES.each do |attr|
     describe "##{attr.downcase}" do
-      let(:opts) do
-        JSON.parse(File.read(File.expand_path('mocks/contact.json', __dir__)))
-      end
-
-      let(:lead) do
-        described_class.new(opts)
+      let(:contact) do
+        described_class.new(contact_data)
       end
 
       it "returns the contacts #{attr.downcase}" do
-        expect(lead.send(attr.downcase)).to eq(opts[attr])
+        expect(contact.send(attr.downcase)).to eq(contact_data[attr])
       end
+    end
+  end
+
+  describe '#link_address' do
+    let(:id) { '4353456' }
+
+    let(:contacts_response) do
+      File.read(File.expand_path('mocks/contact.json', __dir__))
+    end
+
+    let(:org_response) do
+      File.read(File.expand_path('mocks/org.json', __dir__))
+    end
+
+    before do
+      mock_get('/4353456', 200, contacts_response)
+      mock_get_org(200, org_response)
+    end
+
+    let(:contact) do
+      described_class.find_by_id(client, id)
+    end
+
+    let(:org_domain_name) do
+      org_data['domain_name']
+    end
+
+    it 'returns the contacts Zoho CRM link' do
+      expect(
+        contact.link_address
+      ).to eq("https://crm.zoho.eu/crm/#{org_domain_name}/tab/Contacts/#{contact.id}")
     end
   end
 
   def mock_get(path, status, response)
     stub_request(:get, "https://zoho.domain.test/crm/v3/Contacts#{path}")
+      .with(
+        headers: {
+          'Authorization' => "Bearer #{session.token}"
+        }
+      ).to_return(
+        status: status,
+        body: response,
+        headers: { 'content-type' => 'application/json' }
+      )
+  end
+
+  def mock_get_org(status, response)
+    stub_request(:get, 'https://zoho.domain.test/crm/v3/org')
       .with(
         headers: {
           'Authorization' => "Bearer #{session.token}"

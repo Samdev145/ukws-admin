@@ -2,9 +2,11 @@
 
 module Zoho
   class Client
+    attr_reader :faraday
+
     def initialize(session)
       @session = session
-      @client = Faraday.new("#{session.api_domain}/crm/v3/") do |f|
+      @faraday = Faraday.new("#{session.api_domain}/crm/v3/") do |f|
         f.request :json
         f.response :json
         f.request :authorization, 'Bearer', session.token
@@ -12,19 +14,23 @@ module Zoho
     end
 
     def contacts(search_criteria)
-      Contact.search(client, search_criteria)
+      Contact.search(self, search_criteria)
     end
 
     def find_contact_by_id(id)
-      Contact.find_by_id(client, id)
+      Contact.find_by_id(self, id)
     end
 
     def leads(search_criteria)
-      Lead.search(client, search_criteria)
+      Lead.search(self, search_criteria)
     end
 
     def find_lead_by_id(id)
-      Lead.find_by_id(client, id)
+      Lead.find_by_id(self, id)
+    end
+
+    def org
+      @org ||= Org.find(self)
     end
 
     def invalid_session?
@@ -33,6 +39,6 @@ module Zoho
 
     private
 
-    attr_reader :client, :session
+    attr_reader :session
   end
 end

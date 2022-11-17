@@ -3,7 +3,7 @@
 module Zoho
   class Lead
     def self.search(client, search_criteria)
-      response = client.get('Leads/search', search_criteria)
+      response = client.faraday.get('Leads/search', search_criteria)
 
       return [] if response.body.nil?
 
@@ -13,11 +13,15 @@ module Zoho
     end
 
     def self.find_by_id(client, id)
-      response = client.get("Leads/#{id}")
+      response = client.faraday.get("Leads/#{id}")
 
       return nil if response.body.nil?
 
-      new(response.body['data'][0])
+      new(
+        response.body['data'][0].merge(
+          'org_domain_name' => client.org.domain_name
+        )
+      )
     end
 
     ATTRIBUTES = %w[
@@ -38,6 +42,7 @@ module Zoho
       Installation_Type
       Installed_by
       Mobile
+      org_domain_name
       Phone
       Zip_Code
       Salt_Quantity
@@ -66,6 +71,10 @@ module Zoho
       addr += ", #{country}" if country
       addr += ", #{zip_code}" if zip_code
       addr
+    end
+
+    def link_address
+      "https://crm.zoho.eu/crm/#{org_domain_name}/tab/Leads/#{id}"
     end
   end
 end
