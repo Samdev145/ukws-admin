@@ -44,7 +44,7 @@ describe Zoho::Contact do
 
       it 'returns an array of Zoho::Contact instances' do
         expect(described_class.search(client, search_criteria))
-          .to all(be_a(Zoho::Contact))
+          .to all(be_a(described_class))
       end
     end
 
@@ -83,18 +83,25 @@ describe Zoho::Contact do
     context 'when successful' do
       it 'returns an instance of Zoho::Contact' do
         expect(described_class.find_by_id(client, id))
-          .to be_an_instance_of(Zoho::Contact)
+          .to be_an_instance_of(described_class)
       end
     end
   end
 
-  context 'attributes' do
+  describe 'attributes' do
     let(:resource_data) { contact_data }
-    it_behaves_like "a CRM resource"
+
+    it_behaves_like 'a CRM resource'
   end
 
   describe '#link_address' do
     let(:id) { '4353456' }
+    let(:contact) do
+      described_class.find_by_id(client, id)
+    end
+    let(:org_domain_name) do
+      org_data['domain_name']
+    end
 
     let(:contacts_response) do
       File.read(File.expand_path('mocks/contact.json', __dir__))
@@ -107,14 +114,6 @@ describe Zoho::Contact do
     before do
       mock_get('/4353456', 200, contacts_response)
       mock_get_org(200, org_response)
-    end
-
-    let(:contact) do
-      described_class.find_by_id(client, id)
-    end
-
-    let(:org_domain_name) do
-      org_data['domain_name']
     end
 
     it 'returns the contacts Zoho CRM link' do

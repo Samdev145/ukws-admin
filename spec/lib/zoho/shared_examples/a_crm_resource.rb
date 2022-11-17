@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'a CRM resource' do
-
   described_class::ATTRIBUTES.each do |attr|
     describe "##{attr.downcase}" do
       let(:crm_resouce) do

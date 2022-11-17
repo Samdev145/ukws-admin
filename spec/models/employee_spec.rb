@@ -29,7 +29,7 @@ RSpec.describe Employee, type: :model do
       end
 
       it 'returns the installer records' do
-        expect(Employee.installers.count).to eq(2)
+        expect(described_class.installers.count).to eq(2)
       end
     end
   end

@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     if @product.update(product_params)
-      
+
       redirect_to @product
     else
       render :edit

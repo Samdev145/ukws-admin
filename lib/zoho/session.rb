@@ -29,19 +29,7 @@ module Zoho
     end
 
     def refreshed_token?
-      conn = Faraday.new('https://accounts.zoho.eu') do |f|
-        f.response :json
-      end
-
-      resp = conn.post('/oauth/v2/token') do |req|
-        req.headers['Content-Type'] = 'application/json'
-        req.params = {
-          refresh_token: session['refresh_token'],
-          client_id: ENV.fetch('ZOHO_API_KEY'),
-          client_secret: ENV.fetch('ZOHO_SHARED_SECRET'),
-          grant_type: 'refresh_token'
-        }
-      end
+      resp = request_refresh_token
 
       return false if resp.body['access_token'].nil?
 
@@ -49,6 +37,26 @@ module Zoho
       session['expires_at'] = (Time.zone.now + resp.body['expires_in'].seconds).to_i
 
       true
+    end
+
+    def request_refresh_token
+      conn = Faraday.new('https://accounts.zoho.eu') do |f|
+        f.response :json
+      end
+
+      conn.post('/oauth/v2/token') do |req|
+        req.headers['Content-Type'] = 'application/json'
+        req.params = refresh_token_request_params
+      end
+    end
+
+    def refresh_token_request_params
+      {
+        refresh_token: session['refresh_token'],
+        client_id: ENV.fetch('ZOHO_API_KEY'),
+        client_secret: ENV.fetch('ZOHO_SHARED_SECRET'),
+        grant_type: 'refresh_token'
+      }
     end
 
     def token_expired?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,96 +12,97 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_11_150323) do
+ActiveRecord::Schema[7.0].define(version: 20_221_111_150_323) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  create_table 'active_storage_attachments', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'record_type', null: false
+    t.bigint 'record_id', null: false
+    t.bigint 'blob_id', null: false
+    t.datetime 'created_at', null: false
+    t.index ['blob_id'], name: 'index_active_storage_attachments_on_blob_id'
+    t.index %w[record_type record_id name blob_id], name: 'index_active_storage_attachments_uniqueness',
+                                                    unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
-    t.bigint "byte_size", null: false
-    t.string "checksum"
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  create_table 'active_storage_blobs', force: :cascade do |t|
+    t.string 'key', null: false
+    t.string 'filename', null: false
+    t.string 'content_type'
+    t.text 'metadata'
+    t.string 'service_name', null: false
+    t.bigint 'byte_size', null: false
+    t.string 'checksum'
+    t.datetime 'created_at', null: false
+    t.index ['key'], name: 'index_active_storage_blobs_on_key', unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
-    t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  create_table 'active_storage_variant_records', force: :cascade do |t|
+    t.bigint 'blob_id', null: false
+    t.string 'variation_digest', null: false
+    t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
   end
 
-  create_table "appointments", force: :cascade do |t|
-    t.bigint "employee_id"
-    t.string "created_by"
-    t.string "type", null: false
-    t.string "customer_email"
-    t.string "customer_type"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string "crm_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_appointments_on_employee_id"
+  create_table 'appointments', force: :cascade do |t|
+    t.bigint 'employee_id'
+    t.string 'created_by'
+    t.string 'type', null: false
+    t.string 'customer_email'
+    t.string 'customer_type'
+    t.datetime 'start_time'
+    t.datetime 'end_time'
+    t.string 'crm_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['employee_id'], name: 'index_appointments_on_employee_id'
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", null: false
-    t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  create_table 'delayed_jobs', force: :cascade do |t|
+    t.integer 'priority', default: 0, null: false
+    t.integer 'attempts', default: 0, null: false
+    t.text 'handler', null: false
+    t.text 'last_error'
+    t.datetime 'run_at'
+    t.datetime 'locked_at'
+    t.datetime 'failed_at'
+    t.string 'locked_by'
+    t.string 'queue'
+    t.datetime 'created_at'
+    t.datetime 'updated_at'
+    t.index %w[priority run_at], name: 'delayed_jobs_priority'
   end
 
-  create_table "employees", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "calendar_id", null: false
-    t.string "contact_number", null: false
-    t.string "job", null: false
-    t.text "introduction"
-    t.time "preferred_start_time"
-    t.string "time_zone", default: "London"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'employees', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'email', null: false
+    t.string 'calendar_id', null: false
+    t.string 'contact_number', null: false
+    t.string 'job', null: false
+    t.text 'introduction'
+    t.time 'preferred_start_time'
+    t.string 'time_zone', default: 'London'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'products', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'record_type'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "sessions", force: :cascade do |t|
-    t.string "session_id", null: false
-    t.text "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
-    t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  create_table 'sessions', force: :cascade do |t|
+    t.string 'session_id', null: false
+    t.text 'data'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['session_id'], name: 'index_sessions_on_session_id', unique: true
+    t.index ['updated_at'], name: 'index_sessions_on_updated_at'
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
+  add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
 end

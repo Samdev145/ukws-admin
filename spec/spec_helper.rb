@@ -101,5 +101,5 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
-  config.include_context 'flash messaging', type: :request
+  config.include_context 'with flash messaging', type: :request
 end

@@ -12,7 +12,7 @@ class InstallationAppointment < Appointment
     )
   end
 
-  def send_customer_email(lead, test_mode=nil)
+  def send_customer_email(lead, test_mode = nil)
     softener_name = lead.water_softener_model.downcase
 
     ContactMailer.with(
@@ -24,13 +24,13 @@ class InstallationAppointment < Appointment
     ).installation_email.deliver_later
   end
 
-  def send_survey_email(lead, test_mode=nil)
+  def send_survey_email(lead, test_mode = nil)
     ContactMailer.with(
       lead: lead, installer: employee, test_mode: test_mode
     ).survey_email.deliver_later
   end
 
-  def add_to_calendar(calendar_client, lead, test_mode=nil)
+  def add_to_calendar(calendar_client, lead, test_mode = nil)
     summary = lead.full_name
     summary.prepend('[TEST]: ') if test_mode
 

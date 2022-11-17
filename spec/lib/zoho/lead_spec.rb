@@ -44,7 +44,7 @@ describe Zoho::Lead do
 
       it 'returns an array of Zoho::Lead instances' do
         expect(described_class.search(client, search_criteria))
-          .to all(be_a(Zoho::Lead))
+          .to all(be_a(described_class))
       end
     end
 
@@ -83,14 +83,15 @@ describe Zoho::Lead do
     context 'when successful' do
       it 'returns an instance of Zoho::Lead' do
         expect(described_class.find_by_id(client, id))
-          .to be_an_instance_of(Zoho::Lead)
+          .to be_an_instance_of(described_class)
       end
     end
   end
 
-  context 'attributes' do
+  describe 'attributes' do
     let(:resource_data) { lead_data }
-    it_behaves_like "a CRM resource"
+
+    it_behaves_like 'a CRM resource'
   end
 
   describe '#address' do
@@ -145,6 +146,12 @@ describe Zoho::Lead do
 
   describe '#link_address' do
     let(:id) { '4353456' }
+    let(:lead) do
+      described_class.find_by_id(client, id)
+    end
+    let(:org_domain_name) do
+      org_data['domain_name']
+    end
 
     let(:leads_response) do
       File.read(File.expand_path('mocks/lead.json', __dir__))
@@ -157,14 +164,6 @@ describe Zoho::Lead do
     before do
       mock_get('/4353456', 200, leads_response)
       mock_get_org(200, org_response)
-    end
-
-    let(:lead) do
-      described_class.find_by_id(client, id)
-    end
-
-    let(:org_domain_name) do
-      org_data['domain_name']
     end
 
     it 'returns the leads Zoho CRM link' do

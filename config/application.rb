@@ -17,7 +17,7 @@ module UkwsAdmin
 
     config.active_job.queue_adapter = :delayed_job
 
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
 
     # Configuration for the application, engines, and railties goes here.
     #

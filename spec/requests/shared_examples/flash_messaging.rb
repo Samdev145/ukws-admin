@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_context 'flash messaging' do
+RSpec.shared_context 'with flash messaging' do
   let(:flash) do
     ActionDispatch::Flash::FlashHash.new
   end

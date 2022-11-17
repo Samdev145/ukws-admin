@@ -5,10 +5,10 @@ module MailerHelper
     table_cell_styling = 'padding: 5px; border: 1px solid rgb(227, 223, 203); width: 30%'
     content_tag(:tr,
                 content_tag(:th, (preffered_heading || attribute), style: table_cell_styling) +
-                content_tag(:td, record.send(attribute.split(' ').join('_').downcase.to_s), style: table_cell_styling))
+                content_tag(:td, record.send(attribute.split.join('_').downcase.to_s), style: table_cell_styling))
   end
 
-  def row(&block)
+  def row
     raw(
       "<tr>
         <td class='txtsize' valign='top' style='border:0px;'>
@@ -31,7 +31,7 @@ module MailerHelper
   def row_double_column(first_column, second_column)
     row do
       column(first_column) +
-      column(second_column)
+        column(second_column)
     end
   end
 
@@ -45,10 +45,10 @@ module MailerHelper
     'Arial, Helvetica, sans-serif'
   end
 
-  def paragraph(content, opts={})
+  def paragraph(content, opts = {})
     font_size = font_converter(opts[:size])
     rgb_color = font_size == :large ? 'rgb(0, 0, 0)' : 'rgb(17, 17, 17)'
-    font_family = opts[:font] ? opts[:font] : default_font_family
+    font_family = opts[:font] || default_font_family
 
     raw(
       "<p style='padding: 0px; margin: 0px'>
@@ -61,7 +61,7 @@ module MailerHelper
     )
   end
 
-  def add_spacer(height=nil)
+  def add_spacer(_height = nil)
     raw(
       '<tr>
         <td class="txtsize" valign="top" style="border:0px;">
@@ -96,7 +96,7 @@ module MailerHelper
 
   private
 
-  def font_converter(size=nil)
+  def font_converter(size = nil)
     case size
     when :large then 4
     when :small then 2
@@ -106,12 +106,11 @@ module MailerHelper
     end
   end
 
-
   def column(content, single: false)
     width = single ? '100%' : '48.5%'
 
     raw(column_wrapper(
-      "<div class='ukwselement-wrapper text'>
+          "<div class='ukwselement-wrapper text'>
         <table title='' cellspacing='0' cellpadding='0' style='min-width:100%;max-width:100%;table-layout:fixed;border:0px;border-collapse:collapse;background-color:rgba(0, 0, 0, 0);' width='100%'>
           <tbody>
             <tr>
@@ -122,8 +121,8 @@ module MailerHelper
           </tbody>
         </table>
       </div>",
-      width
-    ))
+          width
+        ))
   end
 
   def column_wrapper(content, width)

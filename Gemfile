@@ -31,8 +31,8 @@ gem 'image_processing', '~> 1.2'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem 'aws-sdk-s3', require: false
 gem 'delayed_job_active_record'
-gem "aws-sdk-s3", require: false
 
 gem 'google-apis-calendar_v3'
 gem 'omniauth-google-oauth2'
@@ -66,8 +66,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'factory_bot_rails'
-  gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'webdrivers'
   gem 'webmock'

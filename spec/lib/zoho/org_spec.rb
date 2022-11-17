@@ -33,14 +33,15 @@ describe Zoho::Org do
     context 'when successful' do
       it 'returns an instance of Zoho::Org' do
         expect(described_class.find(client))
-          .to be_an_instance_of(Zoho::Org)
+          .to be_an_instance_of(described_class)
       end
     end
   end
 
-  context 'attributes' do
+  describe 'attributes' do
     let(:resource_data) { org_data }
-    it_behaves_like "a CRM resource"
+
+    it_behaves_like 'a CRM resource'
   end
 
   def mock_get_org(status, response)

@@ -36,7 +36,7 @@ class ContactMailer < ApplicationMailer
 
   private
 
-  def email_to(record, test_mode=nil)
+  def email_to(record, test_mode = nil)
     return record.email if test_mode.nil?
 
     ENV.fetch('EMAIL_TEST_ADDRESS')
