@@ -23,6 +23,7 @@ require 'dotenv'
 Dotenv.load('.env.test.local')
 
 require 'requests/shared_examples/flash_messaging'
+require 'lib/zoho/shared_examples/a_crm_resource'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

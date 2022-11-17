@@ -88,17 +88,9 @@ describe Zoho::Lead do
     end
   end
 
-  Zoho::Lead::ATTRIBUTES.each do |attr|
-    describe "##{attr.downcase}" do
-
-      let(:lead) do
-        described_class.new(lead_data)
-      end
-
-      it "returns the leads #{attr.downcase}" do
-        expect(lead.send(attr.downcase)).to eq(lead_data[attr])
-      end
-    end
+  context 'attributes' do
+    let(:resource_data) { lead_data }
+    it_behaves_like "a CRM resource"
   end
 
   describe '#address' do

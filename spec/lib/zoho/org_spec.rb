@@ -15,6 +15,11 @@ describe Zoho::Org do
   end
 
   let(:client) { Zoho::Client.new(session) }
+  let(:org_data) do
+    JSON.parse(
+      File.read(File.expand_path('mocks/org.json', __dir__))
+    )['org'][0]
+  end
 
   describe '.find_by_id' do
     let(:org_response) do
@@ -33,20 +38,9 @@ describe Zoho::Org do
     end
   end
 
-  Zoho::Org::ATTRIBUTES.each do |attr|
-    describe "##{attr.downcase}" do
-      let(:opts) do
-        JSON.parse(File.read(File.expand_path('mocks/org.json', __dir__)))
-      end
-
-      let(:lead) do
-        described_class.new(opts)
-      end
-
-      it "returns the orgs #{attr.downcase}" do
-        expect(lead.send(attr.downcase)).to eq(opts[attr])
-      end
-    end
+  context 'attributes' do
+    let(:resource_data) { org_data }
+    it_behaves_like "a CRM resource"
   end
 
   def mock_get_org(status, response)

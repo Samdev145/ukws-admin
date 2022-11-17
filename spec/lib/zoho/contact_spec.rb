@@ -88,16 +88,9 @@ describe Zoho::Contact do
     end
   end
 
-  Zoho::Contact::ATTRIBUTES.each do |attr|
-    describe "##{attr.downcase}" do
-      let(:contact) do
-        described_class.new(contact_data)
-      end
-
-      it "returns the contacts #{attr.downcase}" do
-        expect(contact.send(attr.downcase)).to eq(contact_data[attr])
-      end
-    end
+  context 'attributes' do
+    let(:resource_data) { contact_data }
+    it_behaves_like "a CRM resource"
   end
 
   describe '#link_address' do
