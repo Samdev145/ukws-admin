@@ -69,4 +69,42 @@ class LeadsController < ApplicationController
 
     render 'contact_mailer/installation_email'
   end
+
+  def send_quotation
+    @lead = crm_client.find_lead_by_id(params[:id])
+    @installer = Employee.find_by_name(@lead.installed_by)
+
+    Time.zone = @installer.time_zone
+
+    year, month, day = @lead.installation_date.split('-').map(&:to_i)
+    start_time = Time.zone.local(year, month, day, *params[:start_time].split(':').map(&:to_i))
+
+    @product = Product.find_by_lowercase_name(@lead.water_softener_model.downcase)
+
+    ContactMailer.with(
+      lead: @lead,
+      installer: @installer,
+      start_time: start_time.to_s,
+      product: @product,
+      test_mode: params[:test]
+    ).quotation_email.deliver_later
+
+    flash[:success] = 'The quotation email has been sent'
+
+    redirect_to :leads
+  end
+
+  def quotation_email
+    @lead = crm_client.find_lead_by_id(params[:id])
+    @installer = Employee.find_by_name(@lead.installed_by)
+
+    Time.zone = @installer.time_zone
+
+    year, month, day = @lead.installation_date.split('-').map(&:to_i)
+    @start_time = Time.zone.local(year, month, day, *params[:start_time].split(':').map(&:to_i))
+
+    @product = Product.find_by_lowercase_name(@lead.water_softener_model.downcase)
+
+    render 'contact_mailer/quotation_email'
+  end
 end

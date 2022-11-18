@@ -16,6 +16,18 @@ class ContactMailer < ApplicationMailer
     )
   end
 
+  def quotation_email
+    @lead = params[:lead]
+    @installer = params[:installer]
+    @start_time = params[:start_time].to_time
+    @product = params[:product]
+
+    mail(
+      to: email_to(@lead, params[:test_mode]),
+      subject: 'Quotation'
+    )
+  end
+
   def survey_email
     @lead = params[:lead]
     @installer = params[:installer]

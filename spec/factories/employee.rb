@@ -9,5 +9,13 @@ FactoryBot.define do
     job { 'Installer' }
     calendar_id { 1 }
     introduction { 'intro here about the employee' }
+
+    after(:build) do |record|
+      record.avatar.attach(
+        io: File.open(Rails.root.join('spec', 'fixture_files', 'avatar.png')),
+        filename: 'avatar.png',
+        content_type: 'image/png'
+      )
+    end
   end
 end

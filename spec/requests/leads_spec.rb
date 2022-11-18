@@ -141,9 +141,98 @@ RSpec.describe LeadsController, type: :request do
         expect(response).to have_http_status(:not_found)
       end
 
-      it 'renders the show template' do
+      it 'renders the correct template' do
         expect(response).to render_template('errors/not_found')
       end
+    end
+  end
+
+  describe 'POST /lead/:id/send_quotation' do
+    let(:query_params) do
+      {
+        start_time: '09:00',
+        appointment_duration: 4,
+        test: 'yes'
+      }
+    end
+
+    let!(:product) { create(:product) }
+    let!(:employee) { create(:employee) }
+
+    before do
+      post send_quotation_lead_path('11111111111111111111112'), params: query_params
+    end
+
+    it 'assigns @lead' do
+      expect(assigns(:lead)).to eq(lead)
+    end
+
+    it 'assigns @installer' do
+      expect(assigns(:installer)).to eq(employee)
+    end
+
+    it 'assigns @product' do
+      expect(assigns(:product)).to eq(product)
+    end
+
+    it 'sends the quotation email' do
+      mail_double = double
+      allow(mail_double).to receive_message_chain(:quotation_email, :deliver_later)
+
+      expect(ContactMailer).to receive(:with) do |opts|
+        expect(opts[:lead]).to eq(lead)
+        expect(opts[:installer]).to eq(employee)
+        expect(opts[:start_time]).to match(query_params[:start_time])
+        expect(opts[:product]).to eq(product)
+        expect(opts[:test_mode]).to eq(query_params[:test])
+      end.and_return(mail_double)
+
+      post send_quotation_lead_path('11111111111111111111112'), params: query_params
+    end
+
+    it 'sets the flash message' do
+      expect(flash)
+        .to receive(:[]=)
+        .with(:success, 'The quotation email has been sent')
+
+      post send_quotation_lead_path('11111111111111111111112'), params: query_params
+    end
+
+    it 'redirects the correct place' do
+      expect(response).to redirect_to(leads_path)
+    end
+  end
+
+  describe 'GET /lead/:id/quotation_email' do
+    let(:query_params) do
+      {
+        start_time: '09:00',
+        appointment_duration: 4,
+        test: 'yes'
+      }
+    end
+
+    let!(:product) { create(:product) }
+    let!(:employee) { create(:employee) }
+
+    before do
+      get quotation_email_lead_path('11111111111111111111112'), params: query_params
+    end
+
+    it 'assigns @lead' do
+      expect(assigns(:lead)).to eq(lead)
+    end
+
+    it 'assigns @installer' do
+      expect(assigns(:installer)).to eq(employee)
+    end
+
+    it 'assigns @product' do
+      expect(assigns(:product)).to eq(product)
+    end
+
+    it 'renders the correct template' do
+      expect(response).to render_template('contact_mailer/quotation_email')
     end
   end
 end

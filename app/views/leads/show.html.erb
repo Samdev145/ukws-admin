@@ -56,7 +56,8 @@
   </tr>
 </table>
 
-<h2>Book Installation</h2>
+
+<h2>Installation Details</h2>
 
 <% if @appointment && @appointment.errors %>
   <div class="alert alert-danger" role="alert">
@@ -105,6 +106,19 @@
         <%= check_box_tag 'test', 'yes', true %>
       </div>
     </div>
+
+    <h4>Quotation</h4>
+
+    <div class="mb-3 row">
+      <div class="col-sm-4">
+        <div><%= submit_tag 'Preview Quotation Email', class: "btn btn-primary", formaction: quotation_email_lead_path, formmethod: :get %></div>
+      </div>
+      <div class="col-sm-8">
+        <div><%= submit_tag 'Send Quotation', class: "btn btn-success", formaction: send_quotation_lead_path %></div>
+      </div>
+    </div>
+
+    <h4>Book Installation</h4>
 
     <div class="mb-3 row">
       <div class="col-sm-4">

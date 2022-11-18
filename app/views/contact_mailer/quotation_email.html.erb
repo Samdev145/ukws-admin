@@ -121,7 +121,7 @@
 
                         <%= row_single_column(
                           "
-                            #{ paragraph("<b>#{@lead.full_name} Installation Details</b>", { size: :large }) }
+                            #{ paragraph("<b>#{@lead.full_name} Quotation</b>", { size: :large }) }
 
                             #{ paragraph(@lead.address) }
 
@@ -129,7 +129,7 @@
 
                             </br>
 
-                            #{ paragraph("Our plumber <b>#{@installer.name}</b> will be with you on <b>#{@lead.installation_date}</b> between <b>#{@start_time.strftime("%I:%M")}-#{(@start_time + 30.minutes).strftime("%I:%M%P") }</b>") }
+                            #{ paragraph("Our plumber <b>#{@installer.name}</b> will be with you on your chosen date between <b>#{@start_time.strftime("%I:%M")}-#{(@start_time + 30.minutes).strftime("%I:%M%P") }</b>") }
                           "
                         ) %>
 
@@ -195,16 +195,7 @@
 
                             #{
                               paragraph(
-                                'Thank you for placing your business with us and please get in touch if you need anything.',
-                                font: 'Comic Sans MS, cursive, sans-serif'
-                              )
-                            }
-
-                            <br/>
-
-                            #{
-                              paragraph(
-                                'Enjoy your soft water!',
+                                'Thank you for giving us the opportunity to quote for your water softener.',
                                 font: 'Comic Sans MS, cursive, sans-serif'
                               )
                             }
