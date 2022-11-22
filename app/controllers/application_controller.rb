@@ -2,9 +2,14 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user
+  helper_method :active_user_session?
 
   def authenticate_user
-    redirect_to '/crm/login' if session[CRM::PROVIDER].nil? || crm_client.invalid_session?
+    redirect_to '/crm/login' if user_not_logged_in?
+  end
+
+  def active_user_session?
+    !user_not_logged_in?
   end
 
   def authenticate_calendar_client_user
@@ -15,6 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def user_not_logged_in?
+    session[CRM::PROVIDER].nil? || crm_client.invalid_session?
+  end
 
   def calendar_client
     CALENDAR::Client.new(

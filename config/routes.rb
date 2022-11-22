@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get '/:adapter/login', to: 'sessions#new'
+  get '/logout', to: 'sessions#destroy'
 
   resources :contacts
   resources :leads do
