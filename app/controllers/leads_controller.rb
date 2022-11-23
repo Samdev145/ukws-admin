@@ -43,9 +43,8 @@ class LeadsController < ApplicationController
     )
 
     if @appointment.save
-
-      @appointment.send_customer_email(@lead, params[:test])
-      @appointment.send_survey_email(@lead, params[:test])
+      @appointment.send_customer_email(params[:email_from], @lead, params[:test])
+      @appointment.send_survey_email(params[:email_from], @lead, params[:test])
       @appointment.add_to_calendar(calendar_client, @lead, params[:test])
 
       flash[:success] = 'Installation has succesfully been booked'
@@ -82,6 +81,7 @@ class LeadsController < ApplicationController
     @product = Product.find_by_lowercase_name(@lead.water_softener_model.downcase)
 
     ContactMailer.with(
+      from: params[:email_from],
       lead: @lead,
       installer: @installer,
       start_time: start_time.to_s,

@@ -21,6 +21,18 @@ RSpec.describe Employee, type: :model do
   end
 
   describe 'queries' do
+    describe '.internal' do
+      before do
+        create(:employee, internal: false)
+        create(:employee, internal: true)
+        create(:employee, internal: true)
+      end
+
+      it 'returns the correct number of internal staff records' do
+        expect(described_class.internal.count).to eq(2)
+      end
+    end
+
     describe '#installers' do
       before do
         create_list(:employee, 2, job: 'Installer')

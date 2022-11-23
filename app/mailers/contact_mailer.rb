@@ -1,34 +1,38 @@
 # frozen_string_literal: true
 
 class ContactMailer < ApplicationMailer
-  default from: 'spthomas145@gmail.com'
   helper :mailer
 
   def installation_email
+    @from = params[:from]
     @lead = params[:lead]
     @installer = params[:installer]
     @start_time = params[:start_time].to_time
     @product = params[:product]
 
     mail(
+      from: @from,
       to: email_to(@lead, params[:test_mode]),
       subject: 'Installation Appointment'
     )
   end
 
   def quotation_email
+    @from = params[:from]
     @lead = params[:lead]
     @installer = params[:installer]
     @start_time = params[:start_time].to_time
     @product = params[:product]
 
     mail(
+      from: @from,
       to: email_to(@lead, params[:test_mode]),
       subject: 'Quotation'
     )
   end
 
   def survey_email
+    @from = params[:from]
     @lead = params[:lead]
     @installer = params[:installer]
 
@@ -41,6 +45,7 @@ class ContactMailer < ApplicationMailer
     end
 
     mail(
+      from: @from,
       to: email_to(@lead, params[:test_mode]),
       subject: 'Survey Details'
     )

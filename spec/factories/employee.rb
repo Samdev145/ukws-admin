@@ -9,6 +9,7 @@ FactoryBot.define do
     job { 'Installer' }
     calendar_id { 1 }
     introduction { 'intro here about the employee' }
+    internal { true }
 
     after(:build) do |record|
       record.avatar.attach(

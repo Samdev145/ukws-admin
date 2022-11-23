@@ -101,6 +101,17 @@
     </div>
 
     <div class="mb-3 row">
+      <%= label_tag(:email_from, 'Email From', class: 'col-sm-2 col-form-label') %>
+      <div class="col-sm-10">
+        <%=
+          select_tag "email_from",
+          options_for_select(Employee.internal.pluck(:email), ENV.fetch('EMAIL_DEFAULT_FROM_ADDRESS')),
+          class: 'form-select form-select-lg mb-3'
+        %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
       <%= label_tag(:test, 'Run Test', class: 'col-sm-2 col-form-label') %>
       <div class="col-sm-10">
         <%= check_box_tag 'test', 'yes', true %>
