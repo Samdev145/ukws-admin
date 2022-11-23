@@ -121,11 +121,11 @@
 
                         <%= row_single_column(
                           "
-                            #{ paragraph("<b>#{@lead.full_name} #{heading}</b>", { size: :large }) }
+                            #{ paragraph("<b>#{h(@lead.full_name)} #{heading}</b>", { size: :large }) }
 
-                            #{ paragraph(@lead.address) }
+                            #{ paragraph(h(@lead.address)) }
 
-                            #{ paragraph(@lead.phone) }
+                            #{ paragraph(h(@lead.phone)) }
 
                             </br>
 
@@ -137,7 +137,7 @@
 
                         <%= row_double_column(
                           "
-                            #{ paragraph("<b>Price - £#{@lead.total_cost}</b>", { size: :large }) }
+                            #{ paragraph("<b>Price - £#{h(@lead.total_cost)}</b>", { size: :large }) }
 
                             </br>
 
@@ -145,12 +145,12 @@
 
                             <ul>
                               #{ li_item("VAT") }
-                              #{ li_item("#{@lead.softener_warranty_details} Water Softener") if @lead.softener_warranty_details }
-                              #{ li_item("#{@lead.water_softener_model} Water Softener") if @lead.water_softener_model }
-                              #{ li_item("#{@lead.salt_quantity} Packs of #{@lead.salt_type[0]} Salt") if @lead.salt_quantity }
-                              #{ li_item("#{@lead.installation_type}") if @lead.installation_type }
-                              #{ li_item("Tap: #{@lead.drinking_taps}") if @lead.drinking_taps }
-                              #{ li_item("Filter: #{@lead.drinking_water_filter}") if @lead.drinking_water_filter }
+                              #{ li_item("#{h(@lead.softener_warranty_details)} Water Softener") if @lead.softener_warranty_details }
+                              #{ li_item("#{h(@lead.water_softener_model)} Water Softener") if @lead.water_softener_model }
+                              #{ li_item("#{h(@lead.salt_quantity)} Packs of #{h(@lead.salt_type[0])} Salt") if @lead.salt_quantity }
+                              #{ li_item("#{h(@lead.installation_type)}") if @lead.installation_type }
+                              #{ li_item("Tap: #{h(@lead.drinking_taps)}") if @lead.drinking_taps }
+                              #{ li_item("Filter: #{h(@lead.drinking_water_filter)}") if @lead.drinking_water_filter }
                             </ul>
                           ",
 
@@ -165,7 +165,7 @@
                         ) %>
 
                         <% if @lead.customer_notes.present? %>
-                          <%= row_single_column( "#{ paragraph("Extra notes: #{@lead.customer_notes}") }") %>
+                          <%= row_single_column( "#{ paragraph("Extra notes: #{h(@lead.customer_notes)}") }") %>
                         <% end %>
 
                         <%= row_double_column(
@@ -185,11 +185,11 @@
 
                             <br/>
 
-                            #{ paragraph("#{@installer.name}") }
+                            #{ paragraph(h(@installer.name)) }
 
                             <br/>
 
-                            #{ paragraph("#{@installer.introduction}") }
+                            #{ paragraph(h(@installer.introduction)) }
 
                             <br/>
 
