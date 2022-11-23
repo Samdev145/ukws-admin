@@ -204,16 +204,18 @@ RSpec.describe LeadsController, type: :request do
   end
 
   describe 'GET /lead/:id/quotation_email' do
+    let!(:product) { create(:product) }
+    let!(:installer) { create(:employee, job: 'Installer') }
+    let!(:employee) { create(:employee, job: 'Sales Director') }
+
     let(:query_params) do
       {
         start_time: '09:00',
         appointment_duration: 4,
-        test: 'yes'
+        test: 'yes',
+        email_from: employee.email
       }
     end
-
-    let!(:product) { create(:product) }
-    let!(:employee) { create(:employee) }
 
     before do
       get quotation_email_lead_path('11111111111111111111112'), params: query_params
@@ -224,7 +226,11 @@ RSpec.describe LeadsController, type: :request do
     end
 
     it 'assigns @installer' do
-      expect(assigns(:installer)).to eq(employee)
+      expect(assigns(:installer)).to eq(installer)
+    end
+
+    it 'assigns @employee' do
+      expect(assigns(:employee)).to eq(employee)
     end
 
     it 'assigns @product' do

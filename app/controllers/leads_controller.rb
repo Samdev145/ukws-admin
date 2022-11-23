@@ -28,6 +28,7 @@ class LeadsController < ApplicationController
   def book_appointment
     @lead = crm_client.find_lead_by_id(params[:id])
     @installer = Employee.find_by_name(@lead.installed_by)
+    @employee = Employee.find_by_email(params[:email_from])
 
     Time.zone = @installer.time_zone
 
@@ -58,6 +59,7 @@ class LeadsController < ApplicationController
   def installation_email
     @lead = crm_client.find_lead_by_id(params[:id])
     @installer = Employee.find_by_name(@lead.installed_by)
+    @employee = Employee.find_by_email(params[:email_from])
 
     Time.zone = @installer.time_zone
 
@@ -72,6 +74,7 @@ class LeadsController < ApplicationController
   def send_quotation
     @lead = crm_client.find_lead_by_id(params[:id])
     @installer = Employee.find_by_name(@lead.installed_by)
+    @employee = Employee.find_by_email(params[:email_from])
 
     Time.zone = @installer.time_zone
 
@@ -97,6 +100,7 @@ class LeadsController < ApplicationController
   def quotation_email
     @lead = crm_client.find_lead_by_id(params[:id])
     @installer = Employee.find_by_name(@lead.installed_by)
+    @employee = Employee.find_by_email(params[:email_from])
 
     Time.zone = @installer.time_zone
 
