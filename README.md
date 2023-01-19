@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is be run along side your CRM system, it enables:
+ - emails to be sent out to your customers and installers.
+ - events to be added to your intsallers calendars
 
-Things you may want to cover:
+The application has currently been set up to use the following adapters but there are plans to make this more flexible and allow different CRM, Calendar and File Storage services to be used in future
 
-* Ruby version
+Current adapaters configured:
 
-* System dependencies
+```
+CRM = Zoho
+CALENDAR = MyGoogle
+FileStorage = MicrosoftOffice365
+```
 
-* Configuration
+## Development
 
-* Database creation
+Use the helper bash scripts to easily run the application locally using docker. To start the server run:
 
-* Database initialization
+```
+./dev/server.sh
+```
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## Testing
 
-* Deployment instructions
+To run the tests use the provided bash script to first run a docker container containing the application.
 
-* ...
+```
+./dev/shell.sh
+```
+
+You can now run the RSpec tests as normal.
+
+
+
+
