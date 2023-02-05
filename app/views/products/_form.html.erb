@@ -9,7 +9,7 @@
 
 	<div class="form-group">
 		<%= form.label :record_type %>
-		<%= form.select :record_type, ['water softener', 'tap'], class: "form-control" %>
+		<%= form.select :record_type, ['water softener', 'tap'], {}, class: "form-select" %>
 		<% product.errors.full_messages_for(:type).each do |message| %>
 			<div><%= message %></div>
 		<% end %>
@@ -40,6 +40,6 @@
 	</div>
 
 	<div>
-		<%= form.submit :class => "btn btn-primary float-end" %>
+		<%= form.submit class: "btn btn-primary float-end" %>
 	</div>
 <% end %>
