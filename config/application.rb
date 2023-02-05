@@ -19,6 +19,11 @@ module UkwsAdmin
 
     config.exceptions_app = routes
 
+    config.generators do |g|
+      g.helper false
+      g.test_framework :rspec, fixture: true
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
