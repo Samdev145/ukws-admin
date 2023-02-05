@@ -1,39 +1,11 @@
 <h1>Products</h1>
 
-<div class="button-wrap">
-  <%= button_to "New Product", new_product_path, class: "btn btn-primary", method: :get  %>
-</div>
-
-<% @products.each do |product| %>
-
-  <div class="card mb-3" id="product_<%= product.id %>">
-    <%= link_to(product_path(product)) do %>
-      <div class="row g-0">
-        <div class="col-md-4">
-          <% if product.main_photo.attached? %>
-            <%= image_tag(product.main_photo.variant(resize_to_limit: [400, 400]), class: "img-fluid rounded-start") %>
-          <% end %>
-        </div>
-        <div class="col-md-8">
-          <div class="card-body" style="padding-bottom: 45px;">
-            <div class="card-details">
-              <h5 class="card-title"><%= product.name %></h5>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <div class="card-actions">
-      <div class="btn-group float-end" role="group">
-        <%= button_to "Edit", edit_product_path(product), class: "btn btn-primary btn-sm float-end", form: {style: 'margin-right: 5px'}, method: :get  %>
-        <%= button_to "Destroy", product_path(product),
-                        class: "btn btn-danger btn-sm float-end",
-                        method: :delete,
-                        remote: true,
-                        data: { confirm: "Are you sure?" } %>
-      </div>
-    </div>
+<%= turbo_frame_tag Product.new do %>
+  <div class="button-wrap">
+    <%= button_to "New Product", new_product_path, class: "btn btn-primary", method: :get  %>
   </div>
+<% end %>
 
+<%= turbo_frame_tag "products" do %>
+  <%= render @products %>
 <% end %>
