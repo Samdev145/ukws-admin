@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Product, type: :model do
+RSpec.describe Product do
   describe 'associations' do
     it { is_expected.to have_one_attached(:main_photo) }
     it { is_expected.to have_one_attached(:installed_photo) }

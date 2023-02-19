@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ProductsController, type: :request do
+RSpec.describe ProductsController do
   let(:crm_session) do
     {
       CRM::PROVIDER => {
@@ -67,7 +67,7 @@ RSpec.describe ProductsController, type: :request do
   describe 'POST /products' do
     let(:valid_product_params) do
       {
-        product: (attributes_for :product, :with_photos)
+        product: attributes_for(:product, :with_photos)
       }
     end
 
@@ -152,7 +152,7 @@ RSpec.describe ProductsController, type: :request do
 
     let(:valid_product_params) do
       {
-        product: (attributes_for :product, :with_photos)
+        product: attributes_for(:product, :with_photos)
       }
     end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SessionsController, type: :request do
+RSpec.describe SessionsController do
   describe 'GET /:adapter/login' do
     context 'when using the crm adapter' do
       before do

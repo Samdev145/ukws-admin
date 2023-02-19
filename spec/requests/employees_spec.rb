@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe EmployeesController, type: :request do
+RSpec.describe EmployeesController do
   let(:crm_session) do
     {
       CRM::PROVIDER => {
@@ -67,7 +67,7 @@ RSpec.describe EmployeesController, type: :request do
   describe 'POST /employees' do
     let(:valid_employee_params) do
       {
-        employee: (attributes_for :employee)
+        employee: attributes_for(:employee)
       }
     end
 
@@ -130,7 +130,7 @@ RSpec.describe EmployeesController, type: :request do
 
     let(:valid_employee_params) do
       {
-        employee: (attributes_for :employee)
+        employee: attributes_for(:employee)
       }
     end
 

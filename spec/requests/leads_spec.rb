@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe LeadsController, type: :request do
+RSpec.describe LeadsController do
   let(:crm_session) do
     {
       CRM::PROVIDER => {

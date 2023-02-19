@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DashboardController, type: :request do
+RSpec.describe DashboardController do
   let(:crm_session) do
     {
       CRM::PROVIDER => {

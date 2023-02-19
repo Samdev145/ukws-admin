@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ContactsController, type: :request do
+RSpec.describe ContactsController do
   let(:crm_session) do
     {
       CRM::PROVIDER => {

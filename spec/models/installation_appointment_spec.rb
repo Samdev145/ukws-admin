@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe InstallationAppointment, type: :model do
+RSpec.describe InstallationAppointment do
   describe 'associations' do
     it { is_expected.to belong_to(:employee) }
   end
