@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'
-  get '/:adapter/login', to: 'sessions#new'
+  get '/:adapter/login', to: 'sessions#new', as: :login
   get '/logout', to: 'sessions#destroy'
 
   resources :contacts

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :active_user_session?
 
   def authenticate_user
-    redirect_to '/crm/login' if user_not_logged_in?
+    redirect_to login_path(:crm) if user_not_logged_in?
   end
 
   def active_user_session?
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     return unless session[CALENDAR::PROVIDER].nil? || calendar_client.invalid_session?
 
     flash[:alert] = 'Sign in using google if you want to be able to book appointments'
-    redirect_to '/calendar/login'
+    redirect_to login_path(:calendar)
   end
 
   private
