@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       post :send_quotation
       get :installation_email
       get :quotation_email
+      post :invoice
     end
   end
   resources :employees

@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[CRM::PROVIDER] = nil
+    session[ACCOUNTING::PROVIDER] = nil
     session[CALENDAR::PROVIDER] = nil
 
     redirect_to :root

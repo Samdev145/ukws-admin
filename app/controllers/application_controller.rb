@@ -19,6 +19,13 @@ class ApplicationController < ActionController::Base
     redirect_to login_path(:calendar)
   end
 
+  def authenticate_accounts_client_user
+    return unless session[ACCOUNTING::PROVIDER].nil? || accounts_client.invalid_session?
+
+    flash[:alert] = "Sign in using #{ACCOUNTING::FRIENDLY_NAME} if you want to be able to create invoices"
+    redirect_to login_path(:accounting)
+  end
+
   private
 
   def user_not_logged_in?
@@ -34,6 +41,12 @@ class ApplicationController < ActionController::Base
   def crm_client
     CRM::Client.new(
       CRM::Session.new(session[CRM::PROVIDER])
+    )
+  end
+
+  def accounts_client
+    acc = ACCOUNTING::Client.new(
+      ACCOUNTING::Session.new(session[ACCOUNTING::PROVIDER])
     )
   end
 

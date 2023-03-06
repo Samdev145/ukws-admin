@@ -2,6 +2,7 @@
 
 class LeadsController < ApplicationController
   before_action :authenticate_calendar_client_user, only: :book_appointment
+  before_action :authenticate_accounts_client_user, only: :invoice
   before_action :set_lead, except: :index
   before_action :set_installer, except: :index
 
@@ -87,6 +88,34 @@ class LeadsController < ApplicationController
 
     render 'contact_mailer/quotation_email'
   end
+
+  def invoice
+    opts = {
+      name: @lead.full_name,
+      email: @lead.email,
+      phone_number: @lead.phone_number,
+      address: @lead.street,
+      postcode: @lead.zip_code,
+      city: @lead.city
+    }
+
+    customer = accounts_client.find_or_create_customer(opts)
+
+    products = []
+    quantity = 1
+
+    @lead.products_purchased.each do |product|
+      product = accounts_client.find_product(product)
+      products << { product: product, quantity: quantity }
+    end
+
+    accounts_client.create_invoice(
+      customer: customer,
+      products: products,
+      invoice_date: @lead.installation_date
+    )
+  end
+
 
   private
 

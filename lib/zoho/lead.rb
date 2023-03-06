@@ -73,8 +73,21 @@ module Zoho
       addr
     end
 
+    def phone_number
+      mobile || phone
+    end
+
     def link_address
       "https://crm.zoho.eu/crm/#{org_domain_name}/tab/Leads/#{id}"
+    end
+
+    def products_purchased
+      [].tap do |products|
+        products << water_softener_model if water_softener_model
+        products << drinking_taps if drinking_taps
+        products << drinking_water_filter if drinking_water_filter
+        products << salt_quantity if salt_quantity
+      end
     end
   end
 end
