@@ -165,7 +165,7 @@
                         ) %>
 
                         <% if @lead.customer_notes.present? %>
-                          <%= row_single_column( "#{ paragraph("Extra notes: #{h(@lead.customer_notes)}") }") %>
+                          <%= row_single_column( "#{ paragraph("<b>Extra notes:</b> #{h(decorate(@lead).extra_notes)}") }") %>
                         <% end %>
 
                         <%= row_double_column(
