@@ -6,4 +6,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   provider :google_oauth2, ENV.fetch('GOOGLE_CLIENT_ID'), ENV.fetch('GOOGLE_CLIENT_SECRET'),
            scope: 'https://www.googleapis.com/auth/calendar,email'
+
+  provider :sageone, ENV.fetch('SAGE_CLIENT_ID'), ENV.fetch('SAGE_CLIENT_SECRET'), scope: 'full_access'
 end
