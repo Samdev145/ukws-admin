@@ -1,0 +1,28 @@
+<%= turbo_frame_tag translation do %>
+		<div class="row">
+
+			<div class="col-sm-4">
+				<div class="column1-item">
+					<%= translation.name  %>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="column2-item">
+					<%= translation.translated_as  %>
+				</div>
+			</div>
+
+			<div class="col-sm-3">
+
+				<%= button_to "Delete",
+										translation_path(translation),
+                    method: :delete,
+                    class: "btn btn-danger float-end" %>
+				<%= link_to "Edit",
+										edit_translation_path(translation),
+										class: "btn btn-primary float-end" %>
+				
+			</div>
+		</div>
+<% end %>

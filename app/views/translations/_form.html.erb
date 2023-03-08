@@ -1,0 +1,46 @@
+<%= turbo_frame_tag translation do %>
+	<%= form_with model: translation do |form| %>
+
+		<div class="row">
+
+			<% if translation.new_record? %>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<%= form.label :translation_type %>
+						<%= form.select :translation_type, ['zoho to sage', 'woocommerce to sage'], {}, class: "form-select" %>
+						<% translation.errors.full_messages_for(:name).each do |message| %>
+							<div><%= message %></div>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+
+			<div class="col-sm-4">
+				<div class="form-group">
+					<%= form.label :name %>
+					<%= form.text_area :name, class: "form-control" %>
+					<% translation.errors.full_messages_for(:name).each do |message| %>
+						<div><%= message %></div>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="form-group">
+					<%= form.label :translated_as %>
+					<%= form.text_area :translated_as, class: "form-control" %>
+					<% translation.errors.full_messages_for(:translated_as).each do |message| %>
+						<div><%= message %></div>
+					<% end %>
+				</div>
+			</div>
+			
+			<div class="col-sm-2">
+				<%= form.submit class: "btn btn-primary" %>
+			</div>
+			
+		</div>
+		
+	<% end %>
+
+<% end %>

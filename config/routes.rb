@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   end
   resources :employees
   resources :products
+  resources :translations, except: [:show]
 end

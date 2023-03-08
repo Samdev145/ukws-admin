@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <h1>Translations</h1>
+
+  <hr/>
+
+  <div class="row">
+    <%= turbo_frame_tag "translation_button" do %>
+      <%= render partial: "new_translation_button" %>
+    <% end %>
+  </div>
+
+  <% if @crm_translations.any? %>
+    <h2>CRM translations</h2>
+    <%= turbo_frame_tag "crm_translations" do %>
+      <%= render partial: "translation", collection: @crm_translations, as: :translation %>
+    <% end %>
+  <% end %>
+
+  <% if @store_translations.any? %>
+    <h2> Store translations</h2>
+    
+    <%= turbo_frame_tag "store_translations" do %>
+      <%= render partial: 'translation', collection: @store_translations, as: :translation %>
+    <% end %>
+  <% end %>
+  
+</div>

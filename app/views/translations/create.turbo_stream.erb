@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "#{@translation.type}_translations", @translation %>
+<%= turbo_stream.remove Translation.new %>
+<%= turbo_stream.append "translation_button", partial: "new_translation_button" %>
