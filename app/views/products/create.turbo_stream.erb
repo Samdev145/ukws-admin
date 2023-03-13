@@ -1,2 +1,3 @@
 <%= turbo_stream.prepend "products", @product %>
-<%= turbo_stream.update Product.new, "" %>
+<%= turbo_stream.remove Product.new %>
+<%= turbo_stream.append "product_button", partial: "new_product_button" %>

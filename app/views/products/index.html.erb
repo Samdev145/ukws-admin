@@ -12,10 +12,8 @@
     </div>
 
     <div class="col-sm-5">
-      <%= turbo_frame_tag Product.new do %>
-        <div class="button-wrap">
-          <%= button_to "New Product", new_product_path, class: "btn btn-primary", method: :get  %>
-        </div>
+      <%= turbo_frame_tag "product_button" do %>
+        <%= render partial: "new_product_button" %>
       <% end %>
     </div>
   </div>
