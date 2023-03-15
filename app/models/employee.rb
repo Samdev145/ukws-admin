@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Employee < ApplicationRecord
-  has_one_attached :avatar
+  has_one_attached :avatar do |attachable|
+    attachable.variant :small, resize_to_limit: [400, 400]
+  end
 
   scope :installers, -> { where(job: 'Installer') }
   scope :internal, -> { where(internal: true) }

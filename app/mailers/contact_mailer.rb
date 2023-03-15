@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class ContactMailer < ApplicationMailer
-  helper :mailer
+  helper :application, :mailer
 
   def installation_email
     @from = params[:from]
     @lead = params[:lead]
     @installer = params[:installer]
+    @employee = params[:employee]
     @start_time = params[:start_time].to_time
     @product = params[:product]
 
@@ -21,6 +22,7 @@ class ContactMailer < ApplicationMailer
     @from = params[:from]
     @lead = params[:lead]
     @installer = params[:installer]
+    @employee = params[:employee]
     @start_time = params[:start_time].to_time
     @product = params[:product]
 

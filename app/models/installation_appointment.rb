@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class InstallationAppointment < Appointment
+  
   def self.build_new(employee:, lead:, start_time:, end_time:)
     new(
       employee: employee,
@@ -18,6 +19,7 @@ class InstallationAppointment < Appointment
     ContactMailer.with(
       lead: lead,
       installer: employee,
+      employee: employee,
       start_time: start_time.to_s,
       product: Product.find_by_lowercase_name(softener_name),
       test_mode: test_mode

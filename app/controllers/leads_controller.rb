@@ -61,6 +61,8 @@ class LeadsController < ApplicationController
   def send_quotation
     Time.zone = @installer.time_zone
 
+    @employee = Employee.find_by_email(params[:email_from])
+
     set_start_time
     set_product
 
@@ -69,6 +71,7 @@ class LeadsController < ApplicationController
       lead: @lead,
       installer: @installer,
       start_time: @start_time.to_s,
+      employee: @employee,
       product: @product,
       test_mode: params[:test]
     ).quotation_email.deliver_later

@@ -156,7 +156,7 @@
 
                           "<p style='padding: 0px; margin: 0px'>
                             #{
-                              image_tag(@product.main_photo.variant(resize_to_limit: [600, 600]),
+                              image_tag(@product.main_photo.variant(:medium),
                                 class: 'ukwsImage imgsize_F',
                                 style: 'width: 100%; max-width: 100%; vertical-align: top'
                               )
@@ -171,7 +171,7 @@
                         <%= row_double_column(
                           "<p style='padding: 0px; margin: 0px'>
                             #{
-                              image_tag(@installer.avatar.variant(resize_to_limit: [400, 400]),
+                              image_tag(@installer.avatar.variant(:small),
                                 class: 'ukwsImage imgsize_F',
                                 style: 'width: 100%; max-width: 100%; vertical-align: top'
                               )
@@ -215,7 +215,7 @@
                           <%= row_single_column(
                             "<p style='width: 100%; padding: 0px; margin: 0px'>
                               #{
-                                image_tag(@product.installed_photo.variant(resize_to_limit: [400, 400]),
+                                image_tag(@product.installed_photo.variant(:small),
                                   class: 'ukwsImage imgsize_F',
                                   style: 'width: 100%; max-width: 100%; vertical-align: top'
                                 )
