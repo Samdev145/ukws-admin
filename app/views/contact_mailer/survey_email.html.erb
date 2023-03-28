@@ -16,7 +16,7 @@
       <%= create_table_row(@lead, 'Street') %>
       <%= create_table_row(@lead, 'City', 'Town') %>
       <%= create_table_row(@lead, 'Country', 'County') %>
-      <%= create_table_row(@lead, 'Postal Code', 'Postcode') %>
+      <%= create_table_row(@lead, 'Zip Code', 'Postcode') %>
     </table>
 
     <h2>Product Details</h2>
@@ -25,7 +25,7 @@
       <%= create_table_row(@lead, 'Installation Type') %>
       <%= create_table_row(@lead, 'Water Softener Model') %>
       <%= create_table_row(@lead, 'Salt Type') %>
-      <%= create_table_row(@lead, 'Drinking Tap') %>
+      <%= create_table_row(@lead, 'Drinking Taps', 'Drinking Tap') %>
       <%= create_table_row(@lead, 'Country') %>
       <%= create_table_row(@lead, 'Drinking Water Filter') %>
     </table>
@@ -41,9 +41,7 @@
       <%= create_table_row(@lead, 'Survey Notes') %>
     </table>
 
-    <div style="margin-top: 30px;">
-      <%= render "sarah_signature" %>
-    </div>
+    <%= row_single_column(render 'contact_mailer/signature', employee: @sender ) %>
 
   </body>
 </html>

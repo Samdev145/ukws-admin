@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module MailerHelper
+  
   def create_table_row(record, attribute, preffered_heading = nil)
     table_cell_styling = 'padding: 5px; border: 1px solid rgb(227, 223, 203); width: 30%'
     content_tag(:tr,

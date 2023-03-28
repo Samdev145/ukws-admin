@@ -2,11 +2,11 @@
 
 module Zoho
   class LeadDecorator < BaseDecorator
-    def extra_notes
+    def extra_salt_notes
       "#{salt_quantity} packs of #{type_of_salt} " \
-      "Salt will come with the Installer and the remaining #{salt_quantity} packs " \
+      "salt will come with the installer and the remaining #{extra_salt} packs " \
       "will be delivered via our salt driver James in 7-10 working days " \
-      "from when payment is received. #{customer_notes}"
+      "from when payment is received."
     end
 
     def type_of_salt

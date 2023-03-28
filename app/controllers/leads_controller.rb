@@ -34,9 +34,11 @@ class LeadsController < ApplicationController
       end_time: @start_time + params[:appointment_duration].to_i.hours
     )
 
+    sender = Employee.find_by_email(params[:email_from])
+
     if @appointment.save
-      @appointment.send_customer_email(params[:email_from], @lead, params[:test])
-      @appointment.send_survey_email(params[:email_from], @lead, params[:test])
+      @appointment.send_customer_email(sender, @lead, params[:test])
+      @appointment.send_survey_email(sender, @lead, params[:test])
       @appointment.add_to_calendar(calendar_client, @lead, params[:test])
 
       flash[:success] = 'Installation has succesfully been booked'

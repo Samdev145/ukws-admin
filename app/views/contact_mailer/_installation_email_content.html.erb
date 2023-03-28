@@ -164,8 +164,20 @@
                           </p>"
                         ) %>
 
-                        <% if @lead.customer_notes.present? %>
-                          <%= row_single_column( "#{ paragraph("<b>Extra notes:</b> #{h(decorate(@lead).extra_notes)}") }") %>
+                        <% if @lead.customer_notes.present? || @lead.extra_salt.present? %>
+                          <%= row_single_column(paragraph("<b>Extra notes:</b>")) %>
+
+                          <% if @lead.extra_salt.present? %>
+                            <%= row_single_column(
+                              paragraph(
+                                h(decorate(@lead).extra_salt_notes)
+                              )
+                            ) %>
+                          <% end %>
+
+                          <% if @lead.customer_notes.present? %>
+                            <%= row_single_column(@lead.customer_notes) %>
+                          <% end %>
                         <% end %>
 
                         <%= row_double_column(

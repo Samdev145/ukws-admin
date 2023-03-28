@@ -34,7 +34,7 @@ class ContactMailer < ApplicationMailer
   end
 
   def survey_email
-    @from = params[:from]
+    @sender = params[:sender]
     @lead = params[:lead]
     @installer = params[:installer]
 
@@ -47,8 +47,8 @@ class ContactMailer < ApplicationMailer
     end
 
     mail(
-      from: @from,
-      to: email_to(@lead, params[:test_mode]),
+      from: @sender.email,
+      to: email_to(@installer, params[:test_mode]),
       subject: 'Survey Details'
     )
   end

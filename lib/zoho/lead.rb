@@ -32,6 +32,7 @@ module Zoho
       Drinking_Taps
       Drinking_Water_Filter
       Email
+      Extra_Salt
       Full_Name
       Heating_System
       Household_Size
