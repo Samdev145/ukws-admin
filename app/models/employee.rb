@@ -20,4 +20,8 @@ class Employee < ApplicationRecord
   validates_inclusion_of :internal, in: [true, false]
 
   validates :email, uniqueness: true
+
+  def self.find_by_lowercase_name(name)
+    where('lower(name) = ?', name.downcase).first
+  end
 end

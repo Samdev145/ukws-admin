@@ -12,7 +12,7 @@ class Product < ApplicationRecord
 
   validates :name, :record_type, presence: true
 
-  def self.find_by_lowercase_name(product_name)
-    where('lower(name) = ?', product_name.downcase).first
+  def self.find_by_lowercase_name(name)
+    where('lower(name) = ?', name.downcase).first
   end
 end
