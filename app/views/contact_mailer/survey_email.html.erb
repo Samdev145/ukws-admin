@@ -1,7 +1,7 @@
 <div>
   <h1>Survey for <%= @lead.full_name %></h1>
 
-  <p>Installation Date: <%= @lead.installation_date %></p>
+  <p>Installation Date: <%= @lead.installation_date.to_datetime.strftime("%m/%d/%Y") %></p>
 
   <h2>Customer Details</h2>
 
