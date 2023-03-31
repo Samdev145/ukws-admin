@@ -1,47 +1,46 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Survey for <%= @lead.full_name %></h1>
+<div>
+  <h1>Survey for <%= @lead.full_name %></h1>
 
-    <p>Installation Date: <%= @lead.installation_date %></p>
+  <p>Installation Date: <%= @lead.installation_date %></p>
 
-    <h2>Customer Details</h2>
+  <h2>Customer Details</h2>
 
-    <table style="text-align:left; width: 100%; border-spacing: 0px;">
-      <%= create_table_row(@lead, 'Phone') %>
-      <%= create_table_row(@lead, 'Mobile') %>
-      <%= create_table_row(@lead, 'Street') %>
-      <%= create_table_row(@lead, 'City', 'Town') %>
-      <%= create_table_row(@lead, 'Country', 'County') %>
-      <%= create_table_row(@lead, 'Zip Code', 'Postcode') %>
-    </table>
+  <table style="text-align:left; width: 100%; border-spacing: 0px;">
+    <%= create_table_row(@lead, 'Phone') %>
+    <%= create_table_row(@lead, 'Mobile') %>
+    <%= create_table_row(@lead, 'Street') %>
+    <%= create_table_row(@lead, 'City', 'Town') %>
+    <%= create_table_row(@lead, 'Country', 'County') %>
+    <%= create_table_row(@lead, 'Zip Code', 'Postcode') %>
+  </table>
 
-    <h2>Product Details</h2>
+  <h2>Product Details</h2>
 
-    <table style="text-align:left; width: 100%; border-spacing: 0px;">
-      <%= create_table_row(@lead, 'Installation Type') %>
-      <%= create_table_row(@lead, 'Water Softener Model') %>
-      <%= create_table_row(@lead, 'Salt Type') %>
-      <%= create_table_row(@lead, 'Drinking Taps', 'Drinking Tap') %>
-      <%= create_table_row(@lead, 'Country') %>
-      <%= create_table_row(@lead, 'Drinking Water Filter') %>
-    </table>
+  <table style="text-align:left; width: 100%; border-spacing: 0px;">
+    <%= create_table_row(@lead, 'Installation Type') %>
+    <%= create_table_row(@lead, 'Water Softener Model') %>
+    <%= create_table_row(@lead, 'Salt Type') %>
+    <%= create_table_row(@lead, 'Drinking Taps', 'Drinking Tap') %>
+    <%= create_table_row(@lead, 'Country') %>
+    <%= create_table_row(@lead, 'Drinking Water Filter') %>
+  </table>
 
-    <h2>Survey Details</h2>
+  <h2>Survey Details</h2>
 
-    <table style="text-align:left; width: 100%; border-spacing: 0px;">
-      <%= create_table_row(@lead, 'Incoming Mains Location') %>
-      <%= create_table_row(@lead, 'Incoming Main Size') %>
-      <%= create_table_row(@lead, 'Heating System') %>
-      <%= create_table_row(@lead, 'How Many Bathrooms') %>
-      <%= create_table_row(@lead, 'Household Size') %>
-      <%= create_table_row(@lead, 'Survey Notes') %>
-    </table>
+  <table style="text-align:left; width: 100%; border-spacing: 0px;">
+    <%= create_table_row(@lead, 'Incoming Mains Location') %>
+    <%= create_table_row(@lead, 'Incoming Main Size') %>
+    <%= create_table_row(@lead, 'Heating System') %>
+    <%= create_table_row(@lead, 'How Many Bathrooms') %>
+    <%= create_table_row(@lead, 'Household Size') %>
+  </table>
 
-    <%= row_single_column(render 'contact_mailer/signature', employee: @sender ) %>
+  <h2>Notes from Survey </h2>
 
-  </body>
-</html>
+  <% if @lead.survey_notes.present? %>
+   <p><%=  @lead.survey_notes %></p>
+  <% end %>
+
+  <%= render 'contact_mailer/signature', employee: @sender %>
+
+</div>

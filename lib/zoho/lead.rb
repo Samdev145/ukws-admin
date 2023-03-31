@@ -50,7 +50,7 @@ module Zoho
       Salt_type
       Softener_warranty_details
       Street
-      Survey_Notes
+      Survey_Notes1
       Total_Cost
       Water_Softener_Model
       what3words
@@ -76,6 +76,10 @@ module Zoho
 
     def phone_number
       mobile || phone
+    end
+
+    def survey_notes
+      survey_notes1
     end
 
     def link_address
