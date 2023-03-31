@@ -1,7 +1,7 @@
 <%=
   render 'contact_mailer/installation_email_content',
   heading: 'Installation Details',
-  plumber_arrival: "Our plumber <b>#{@installer.name}</b> will be with you on your chosen date between <b>#{@start_time.strftime('%I:%M')}-#{(@start_time + 30.minutes).strftime('%I:%M%P') }</b>",
+  plumber_arrival: "Our plumber <b>#{@installer.name}</b> will be with you on <b>#{@lead.installation_date}</b> between <b>#{@start_time.strftime('%I:%M')}-#{(@start_time + 30.minutes).strftime('%I:%M%P') }</b>",
   thanks_message: (
     paragraph(
       'Thank you for placing your business with us and please get in touch if you need anything.',
