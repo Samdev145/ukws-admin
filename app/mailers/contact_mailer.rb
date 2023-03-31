@@ -14,7 +14,7 @@ class ContactMailer < ApplicationMailer
     mail(
       from: @from,
       to: email_to(@lead, params[:test_mode]),
-      subject: 'Installation Appointment'
+      subject: 'UK Water Softeners - Installation'
     )
   end
 
