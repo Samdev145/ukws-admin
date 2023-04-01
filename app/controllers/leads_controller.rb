@@ -130,7 +130,7 @@ class LeadsController < ApplicationController
   end
 
   def set_installer
-    @installer = Employee.find_by_lowercase_name(@lead.installed_by)
+    @installer = Employee.find_by_lowercase_name(@lead.installed_by.downcase)
   end
 
   def set_product
