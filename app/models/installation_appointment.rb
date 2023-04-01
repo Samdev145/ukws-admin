@@ -36,14 +36,13 @@ class InstallationAppointment < Appointment
   end
 
   def add_to_calendar(calendar_client, lead, test_mode = nil)
-    summary = lead.full_name
-    summary.prepend('[TEST]: ') if test_mode
+    summary = "#{lead.full_name} - #{lead.phone}"
 
     calendar_client.schedule(
       start_time: start_time,
       end_time: end_time,
       calendar_id: employee.calendar_id,
-      description: "Phone: #{lead.phone}, What3Words: #{lead.what3words}",
+      description: "What3Words: #{lead.what3words}",
       summary: summary,
       location: lead.address
     )
